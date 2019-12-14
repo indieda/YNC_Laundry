@@ -53,11 +53,13 @@ bool isblink(int scan_blink_iter, int dk_num, int lt_num, int iter)
 //Sleep functions (no need to change)
 void sleepl()
 {
-  LowPower.idle(tml, ADC_OFF, TIMER2_OFF, TIMER1_OFF, TIMER0_OFF, SPI_OFF, USART0_ON, TWI_OFF);
+//  LowPower.idle(tml, ADC_OFF, TIMER2_OFF, TIMER1_OFF, TIMER0_OFF, SPI_OFF, USART0_ON, TWI_OFF);
+LowPower.powerDown(tml, ADC_OFF, BOD_OFF);
 }
 void sleepd()
 {
-  LowPower.idle(tmd, ADC_OFF, TIMER2_OFF, TIMER1_OFF, TIMER0_OFF, SPI_OFF, USART0_ON, TWI_OFF);
+//  LowPower.idle(tmd, ADC_OFF, TIMER2_OFF, TIMER1_OFF, TIMER0_OFF, SPI_OFF, USART0_ON, TWI_OFF);
+LowPower.powerDown(tmd, ADC_OFF, BOD_OFF);
 }
 void sleep_isblink()
 {
@@ -89,11 +91,14 @@ void loop()
   if (lightVal < light_threshold)
   {
     Serial.write("d1\n");
+    //This is an extremely important statement to ensure that all the bytes are sent over bluetooth before entering sleep mode. Without it, you wouldn't be able to decode the messages properly. Read for more: https://arduino.stackexchange.com/questions/14411/low-power-library-messing-up-serial-text 
+    Serial.flush();
     sleepd(); sleepd(); sleepd(); sleepd(); sleepd(); sleepd(); sleepd();
   }
   else
   {
     Serial.write("l1\n");
+    Serial.flush();
     sleepl(); sleepl();
   }
 }
