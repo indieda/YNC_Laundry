@@ -1,11 +1,14 @@
 from bluepy import btle
-import struct
+import datetime
+
+t = datetime.datetime.now()
 
 class MyDel(btle.DefaultDelegate):
     def __init__(self,params):
         btle.DefaultDelegate.__init__(self)
     def handleNotification(self,cHandle,data):
         print("Handling notification...")
+        print(datetime.datetime.now())
         print(data.decode('utf8'))
 print("Connecting...")
 p = btle.Peripheral("50:51:a9:fd:a6:f1")
@@ -21,3 +24,4 @@ for svc in dev.services:
     print(str(svc))
 '''    
     
+
