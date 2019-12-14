@@ -1,6 +1,6 @@
 #Taken from this site: https://raspberrypi.stackexchange.com/questions/96247/are-there-reliable-methods-for-connecting-reconnecting-to-multiple-bluetooth-le
 #The person added the sleep function.
-#hrm
+#hr
 
 from bluepy import btle
 import struct, os
