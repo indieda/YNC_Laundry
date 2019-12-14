@@ -37,12 +37,14 @@ def perif_wait(perif):
 #            print("waiting for notifications...")
             pass
     except Exception as e:
+        perif.disconnect()
+        time.sleep(1.0)
         pass
     finally:
 #        print('disconnecting...')
         try:
             perif.disconnect()
-            time.sleep(1.0)
+            time.sleep(3.0)
         except Exception as e:
             print('failed to disconnect!', e)
             pass
