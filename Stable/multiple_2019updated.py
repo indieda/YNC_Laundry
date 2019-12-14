@@ -65,9 +65,9 @@ def establish_connection(addr):
             print("failed to connect to "+addr, e)
             time.sleep(2.0)
             os.system("rfkill block bluetooth")
-            time.sleep(5.0)
+            time.sleep(3.0)
             os.system("rfkill unblock bluetooth")
-            time.sleep(5.0)
+            time.sleep(10.0)
             print("restarted bl")
             continue
 #os.popen('sudo hciconfig hci0 reset')
