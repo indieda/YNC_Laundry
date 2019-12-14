@@ -56,7 +56,7 @@ def establish_connection(addr):
     while True:
         try:
 #            print("Attempting to read from "+addr)
-            p = btle.Peripheral(addr)
+            p = btle.Peripheral(addr,btle.ADDR_TYPE_RANDOM)
             p_delegate = MyDelegate(addr)
             p.withDelegate(p_delegate)
 #            print("Connected to "+addr)
