@@ -1,14 +1,34 @@
-#Taken from this site: https://raspberrypi.stackexchange.com/questions/96247/are-there-reliable-methods-for-connecting-reconnecting-to-multiple-bluetooth-le
+#Referenced from: https://raspberrypi.stackexchange.com/questions/96247/are-there-reliable-methods-for-connecting-reconnecting-to-multiple-bluetooth-le
 #The person added the sleep function.
-#hr
+#Yun Da added the POST functionality, and restart bluetooth when there is prolonged silence from either devices.
 
 from bluepy import btle
 import struct, os
 from concurrent import futures
 import time
 import datetime
+import requests
 
 addr_var = ['50:51:a9:fd:a6:f1','50:51:A9:FD:A6:B2']
+url = 'http://webhook.site/9bc8eff7-fde0-4ffd-8e70-dfb12d85efae'
+
+def stdhandle(data_decoded):
+    print(datetime.datetime.now())
+    if data_decoded[0] == "l" :
+        idx = data_decoded[1]
+        response = requests.post(url , json = {'Washer {}'.format(idx):'Bright'})
+        print('Washer {}'.format(idx), "Bright and Uploaded")
+        return
+    elif data_decoded[0] == "d" :
+        idx = data_decoded[1]
+        response = requests.post(url, json = {'Washer {}'.format(idx):'Dark'})
+        print('Washer {}'.format(idx), "Dark and Uploaded")
+        return
+    elif data_decoded[0] == "b" :
+        idx = data_decoded[1]
+        response = requests.post(url, json = {'Washer {}'.format(idx):'Blinking'})
+        print('Washer {}'.format(idx), "Blinking and Uploaded")
+        return
 
 class MyDelegate(btle.DefaultDelegate):
 
@@ -22,11 +42,10 @@ class MyDelegate(btle.DefaultDelegate):
         try:
 #            datau= data
             data_decoded = data.decode('utf8')
-#            data_unpacked = struct.unpack("b",datau)
             print(data_decoded)
+            stdhandle(data_decoded)
+            #            data_unpacked = struct.unpack("b",datau)
 #            print(data_unpacked)
-            print(datetime.datetime.now())
-            return
         except:
             pass
 
