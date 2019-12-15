@@ -8,11 +8,17 @@ from concurrent import futures
 import time
 import datetime
 import requests
+global time_prev
+global time_elapsed
 
+time_prev = time.time()
+time_elapsed = time.time() - time_prev
 addr_var = ['50:51:a9:fd:a6:f1','50:51:A9:FD:A6:B2']
 url = 'http://webhook.site/9bc8eff7-fde0-4ffd-8e70-dfb12d85efae'
 
 def stdhandle(data_decoded):
+    global time_prev
+    time_prev = time.time()
     print(datetime.datetime.now())
     if data_decoded[0] == "l" :
         idx = data_decoded[1]
@@ -71,6 +77,8 @@ def establish_connection(addr):
 #    p.disconnect()
 #    time.sleep(2.0)
     while True:
+        global t_elapsed
+        global time_prev
         try:
 #            print("Attempting to read from "+addr)
             p = btle.Peripheral(addr)
@@ -82,6 +90,14 @@ def establish_connection(addr):
             print("failed to connect to "+addr, e)
             time.sleep(2.0)
             continue
+        finally:
+            time_elapsed = time.time() - time_prev
+            if time_elapsed > 180:
+                os.system("rfkill block bluetooth")
+                time.sleep(5.0)
+                os.system("rfkill unblock bluetooth")
+                time.sleep(5.0)
+                pass
 
 #os.popen('sudo hciconfig hci0 reset')
 #os.popen('sudo invoke-rc.d bluetooth restart')
