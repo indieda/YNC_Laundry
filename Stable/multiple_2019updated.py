@@ -100,7 +100,7 @@ def establish_connection(addr):
             continue
         finally:
             time_elapsed = time.time() - time_prev
-            if time_elapsed > 60:
+            if time_elapsed > 180:
 #https://gist.github.com/davidrs/db04314dde63d411b16b1d8e7e48d4fc 
                 sv_uuid = btle.UUID(SVUUID)
                 ble_sv = p.getServiceByUUID(sv_uuid)
