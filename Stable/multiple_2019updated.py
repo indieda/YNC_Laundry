@@ -93,11 +93,13 @@ def establish_connection(addr):
             continue
         finally:
             time_elapsed = time.time() - time_prev
-            if time_elapsed > 180:
-                os.system("rfkill block bluetooth")
+            if time_elapsed > 20:
+                p.disconnect()
                 time.sleep(5.0)
-                os.system("rfkill unblock bluetooth")
-                time.sleep(5.0)
+#                os.system("rfkill block bluetooth")
+#                time.sleep(5.0)
+#                os.system("rfkill unblock bluetooth")
+#                time.sleep(5.0)
                 print("Restarted Bluetooth due to failure to connect for more than 3 minutes")
                 time_prev = time.time()
                 pass
