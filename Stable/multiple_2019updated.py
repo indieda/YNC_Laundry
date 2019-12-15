@@ -72,7 +72,7 @@ def perif_wait(perif):
         try:
             perif.disconnect()
             #This sleep value needs to change when more POSTS to https are done. For 2 devices, 0.4 is still okay.
-            time.sleep(0.4)
+            time.sleep(0.1)
         except Exception as e:
             print('failed to disconnect!', e)
             pass
