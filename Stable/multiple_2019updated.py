@@ -93,7 +93,7 @@ def establish_connection(addr):
             continue
         finally:
             time_elapsed = time.time() - time_prev
-            if time_elapsed > 20:
+            if time_elapsed > 40:
                 p.disconnect()
                 time.sleep(5.0)
 #                os.system("rfkill block bluetooth")
