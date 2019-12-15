@@ -19,7 +19,6 @@ url = 'http://webhook.site/9bc8eff7-fde0-4ffd-8e70-dfb12d85efae'
 def stdhandle(data_decoded):
     global time_prev
     time_prev = time.time()
-    print(datetime.datetime.now())
     if data_decoded[0] == "l" :
         idx = data_decoded[1]
         response = requests.post(url , json = {'Washer {}'.format(idx):'Bright'})
