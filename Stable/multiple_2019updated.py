@@ -51,7 +51,6 @@ class MyDelegate(btle.DefaultDelegate):
             stdhandle(data_decoded)
             #            data_unpacked = struct.unpack("b",datau)
 #            print(data_unpacked)
-            time.sleep(1.0)
         except:
             print("exception inside handle Notif")
             pass
