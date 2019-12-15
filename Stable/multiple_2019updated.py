@@ -77,7 +77,7 @@ def establish_connection(addr):
 #    p.disconnect()
 #    time.sleep(2.0)
     while True:
-        global t_elapsed
+        global time_elapsed
         global time_prev
         try:
 #            print("Attempting to read from "+addr)
