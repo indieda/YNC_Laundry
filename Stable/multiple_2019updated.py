@@ -44,6 +44,7 @@ class MyDelegate(btle.DefaultDelegate):
         global addr_var
         global delegate_global
         print('got data: ', data)
+        print(datetime.datetime.now())
         try:
 #            datau= data
             data_decoded = data.decode('utf8')
@@ -96,6 +97,7 @@ def establish_connection(addr):
                 time.sleep(5.0)
                 os.system("rfkill unblock bluetooth")
                 time.sleep(5.0)
+                print("Restarted Bluetooth due to failure to connect for more than 3 minutes")
                 pass
 
 #os.popen('sudo hciconfig hci0 reset')
