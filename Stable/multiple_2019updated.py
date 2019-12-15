@@ -1,6 +1,6 @@
 #Referenced from: https://raspberrypi.stackexchange.com/questions/96247/are-there-reliable-methods-for-connecting-reconnecting-to-multiple-bluetooth-le
 #The person added the sleep function.
-#Yun Da added the POST functionality, and restart bluetooth when there is prolonged silence from either devices.
+#Yun Da added the POST functionality, and restart bluetooth at the start of the script.
 
 from bluepy import btle
 import struct, os
