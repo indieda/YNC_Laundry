@@ -67,7 +67,7 @@ def perif_wait(perif):
 #        print('disconnecting...')
         try:
             perif.disconnect()
-            time.sleep(3.0)
+            time.sleep(1.0)
         except Exception as e:
             print('failed to disconnect!', e)
             pass
