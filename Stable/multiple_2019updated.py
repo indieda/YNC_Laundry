@@ -61,7 +61,7 @@ def perif_wait(perif):
 #            print("waiting for notifications...")
             pass
     except Exception as e:
-        print("exception inside perid_wait")
+        print("exception inside perif_wait",e)
         pass
     finally:
 #        print('disconnecting...')
@@ -98,7 +98,7 @@ def establish_connection(addr):
                 os.system("rfkill unblock bluetooth")
                 time.sleep(5.0)
                 print("Restarted Bluetooth due to failure to connect for more than 3 minutes")
-                time_elapsed = 0
+                time_prev = time.time()
                 pass
 
 #os.popen('sudo hciconfig hci0 reset')
