@@ -23,17 +23,16 @@ def stdhandle(data_decoded):
         idx = data_decoded[1]
         response = requests.post(url , json = {'Washer {}'.format(idx):'Bright'})
         print('Washer {}'.format(idx), "Bright and Uploaded")
-        return
     elif data_decoded[0] == "d" :
         idx = data_decoded[1]
         response = requests.post(url, json = {'Washer {}'.format(idx):'Dark'})
         print('Washer {}'.format(idx), "Dark and Uploaded")
-        return
     elif data_decoded[0] == "b" :
         idx = data_decoded[1]
         response = requests.post(url, json = {'Washer {}'.format(idx):'Blinking'})
         print('Washer {}'.format(idx), "Blinking and Uploaded")
-        return
+    else:
+        pass
 
 class MyDelegate(btle.DefaultDelegate):
 
