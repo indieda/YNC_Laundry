@@ -84,6 +84,8 @@ def establish_connection(addr):
     while True:
         global time_elapsed
         global time_prev
+        global SVUUID
+        global CHRUUID
         try:
 #            print("Attempting to read from "+addr)
             p = btle.Peripheral(addr)
