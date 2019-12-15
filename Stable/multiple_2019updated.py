@@ -1,6 +1,6 @@
 #Referenced from: https://raspberrypi.stackexchange.com/questions/96247/are-there-reliable-methods-for-connecting-reconnecting-to-multiple-bluetooth-le
 #The person added the sleep function.
-#Yun Da added the POST functionality, and restart bluetooth at the start of the script.
+#indieda added POST functionality, and restart bluetooth when there is prolonged silence from either devices.
 
 from bluepy import btle
 import struct, os
@@ -61,7 +61,7 @@ def perif_wait(perif):
 #        print('disconnecting...')
         try:
             perif.disconnect()
-            time.sleep(1.0)
+            time.sleep(3.0)
         except Exception as e:
             print('failed to disconnect!', e)
             pass
@@ -82,6 +82,7 @@ def establish_connection(addr):
             print("failed to connect to "+addr, e)
             time.sleep(2.0)
             continue
+
 #os.popen('sudo hciconfig hci0 reset')
 #os.popen('sudo invoke-rc.d bluetooth restart')
 os.system("rfkill block bluetooth")
