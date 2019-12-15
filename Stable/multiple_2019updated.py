@@ -40,8 +40,6 @@ class MyDelegate(btle.DefaultDelegate):
         btle.DefaultDelegate.__init__(self)
 
     def handleNotification(self,cHandle,data):
-        global addr_var
-        global delegate_global
         print('got data: ', data)
         print(datetime.datetime.now())
         try:
@@ -93,7 +91,7 @@ def establish_connection(addr):
             continue
         finally:
             time_elapsed = time.time() - time_prev
-            if time_elapsed > 40:
+            if time_elapsed > 60:
                 p.disconnect()
                 time.sleep(5.0)
 #                os.system("rfkill block bluetooth")
