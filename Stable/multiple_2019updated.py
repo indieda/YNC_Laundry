@@ -46,13 +46,14 @@ class MyDelegate(btle.DefaultDelegate):
         print('got data: ', data)
         print(datetime.datetime.now())
         try:
-#            datau= data
             data_decoded = data.decode('utf8')
             print(data_decoded)
             stdhandle(data_decoded)
             #            data_unpacked = struct.unpack("b",datau)
 #            print(data_unpacked)
+            time.sleep(1.0)
         except:
+            print("exception inside handle Notif")
             pass
 
 def perif_wait(perif):
@@ -62,6 +63,7 @@ def perif_wait(perif):
 #            print("waiting for notifications...")
             pass
     except Exception as e:
+        print("exception inside perid_wait")
         pass
     finally:
 #        print('disconnecting...')
@@ -98,6 +100,7 @@ def establish_connection(addr):
                 os.system("rfkill unblock bluetooth")
                 time.sleep(5.0)
                 print("Restarted Bluetooth due to failure to connect for more than 3 minutes")
+                time_elapsed = 0
                 pass
 
 #os.popen('sudo hciconfig hci0 reset')
