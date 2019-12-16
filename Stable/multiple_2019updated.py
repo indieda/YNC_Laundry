@@ -91,7 +91,6 @@ def establish_connection(addr):
             p = btle.Peripheral(addr)
             p_delegate = MyDelegate(addr)
             p.withDelegate(p_delegate)
-
 #            print("Connected to "+addr)
             perif_wait(p)
         except Exception as e:
@@ -101,13 +100,16 @@ def establish_connection(addr):
         finally:
             time_elapsed = time.time() - time_prev
             if time_elapsed > 180:
-#https://gist.github.com/davidrs/db04314dde63d411b16b1d8e7e48d4fc 
-                sv_uuid = btle.UUID(SVUUID)
-                ble_sv = p.getServiceByUUID(sv_uuid)
-
-                uuidConfig=btle.UUID(CHRUUID)
-                data_chrc = ble_sv.getCharacteristics(uuidConfig)[0]
-                data_chrc.write(bytes("\x01"))
+                os.system("rfkill block bluetooth")
+                time.sleep(2.0)
+                os.system("rfkill unblock bluetooth")
+                time.sleep(2.0)
+    #https://gist.github.com/davidrs/db04314dde63d411b16b1d8e7e48d4fc 
+#                sv_uuid = btle.UUID(SVUUID)
+#                ble_sv = p.getServiceByUUID(sv_uuid)
+#                uuidConfig=btle.UUID(CHRUUID)
+#                data_chrc = ble_sv.getCharacteristics(uuidConfig)[0]
+#                data_chrc.write(bytes("\x01"))
                 time.sleep(1.0)
                 print("Restarted Bluetooth due to failure to connect for more than 3 minutes")
                 time_prev = time.time()
