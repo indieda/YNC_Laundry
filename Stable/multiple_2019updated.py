@@ -61,7 +61,7 @@ class MyDelegate(btle.DefaultDelegate):
 def perif_wait(perif):
     try:
 #waitForNotifications will return a true or False. True only if HandleNotif was called. False if nothing.
-        if (perif.waitForNotifications(1.0)):
+        if (perif.waitForNotifications(60.0)):
 #            print("waiting for notifications...")
             pass
     except Exception as e:
