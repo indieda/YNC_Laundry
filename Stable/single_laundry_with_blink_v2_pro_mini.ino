@@ -2,29 +2,30 @@
 //Code written mostly by Yun Da, with reference to arduino ref page and sparksfun.
 
 #include <LowPower.h>
-//#include <avr/sleep.h>
-//#include <avr/wdt.h>
-//#include <JeeLib.h>
+#include <SoftwareSerial.h>
 
-//ISR (WDT_Vect)
-//{
-//  wdt_disable();
-//}
+#define ble_tx 9 // ble transfer out
+#define ble_rx 8 // ble receiver
+#define ble_vcc 7 //Power in
+#define ble_gnd 6 // Ground
 
-//ISR(WDT_vect) { Sleepy::watchdogEvent();}
-//global variables
+//global variables (by hardware design)
 const int sensorPin = 0;
 const int ldrOUT = 11;
 const int ldrGND = 12;
+SoftwareSerial ble(8,9);
+
 int lightCal, lightVal, dk, lt, dk_num, lt_num, iter, darkval;
+unsigned message;
 
 //ensure you start the device with the photodiode pointing at the LED when dark, not when bright.
 const int light_threshold = 150;
 
+
 //Things that you can update:
 int scan_blink_iter = 20;
-unsigned tml = SLEEP_8S;
-unsigned tmd = SLEEP_8S;
+unsigned tml = SLEEP_1S;
+unsigned tmd = SLEEP_1S;
 //control how long between each blinking check
 unsigned tmib = SLEEP_250MS;
 
@@ -62,50 +63,33 @@ bool isblink(int scan_blink_iter, int dk_num, int lt_num, int iter)
 }
 
 
+
+
+
+unsigned bluetooth_init(char message) {
+ Serial.write(message);
+}
+
+
+
+
+
 //Sleep functions (no need to change)
 void sleepl()
 {
   //LowPower.idle(tml, ADC_OFF, TIMER2_OFF, TIMER1_OFF, TIMER0_OFF, SPI_OFF, USART0_OFF, TWI_OFF);
-//Sleepy::loseSomeTime(8000); // Instead of delay(1000);
 LowPower.powerDown(tml, ADC_OFF, BOD_OFF);
-// disable ADC
-//  ADCSRA = 0;  
-
-  // clear various "reset" flags
-  //MCUSR = 0;     
-  // allow changes, disable reset
-  //WDTCSR = bit (WDCE) | bit (WDE);
-  // set interrupt mode and an interval 
-  //WDTCSR = bit (WDIE) | bit (WDP3) | bit (WDP0);    // set WDIE, and 8 seconds delay
-  //wdt_reset();  // pat the dog
-  
-  //set_sleep_mode (SLEEP_MODE_PWR_DOWN);  
-  //noInterrupts ();           // timed sequence follows
-  //sleep_enable();
- 
-  // turn off brown-out enable in software
-  //MCUCR = bit (BODS) | bit (BODSE);
-  //MCUCR = bit (BODS); 
-  //interrupts ();             // guarantees next instruction executed
-  //sleep_cpu ();  
-  
-  // cancel sleep as a precaution
-  //sleep_disable();
 }
 void sleepd()
 {
 //  LowPower.idle(tmd, ADC_OFF, TIMER2_OFF, TIMER1_OFF, TIMER0_OFF, SPI_OFF, USART0_OFF, TWI_OFF);
-//Sleepy::loseSomeTime(8000); // Instead of delay(1000);
 LowPower.powerDown(tmd, ADC_OFF, BOD_OFF);
 }
 void sleep_isblink()
 {
 //LowPower.powerDown(tmib, ADC_OFF, BOD_OFF);
-//Sleepy::loseSomeTime(250); // Instead of delay(1000);
   LowPower.idle(tmib, ADC_OFF, TIMER2_OFF, TIMER1_OFF, TIMER0_OFF, SPI_OFF, USART0_ON, TWI_OFF);
 }
-
-
 
 void setup()
 {
@@ -119,14 +103,23 @@ void setup()
   //darkval = analogRead(sensorPin);
   pinMode(ldrOUT,OUTPUT);
   pinMode(ldrGND,OUTPUT);
+
+  pinMode(ble_vcc,OUTPUT);
+  pinMode(ble_gnd,OUTPUT);
+  digitalWrite(ble_vcc,HIGH);
+  digitalWrite(ble_gnd,LOW);
+
+
 }
 
 //START of main loop.
 void loop()
 {
   //Turn on the photoresistor components.
+  pinMode(ldrOUT,OUTPUT);
+  pinMode(ldrGND,OUTPUT);
   digitalWrite(ldrOUT,HIGH);
-  digitalWrite(ldrGND.LOW);
+  digitalWrite(ldrGND,LOW);
   
   //Take a reading using analogRead() on sensor pin and store it in lightVal
   while (isblink(scan_blink_iter, 0, 0, 0)) {
@@ -140,7 +133,8 @@ void loop()
     //This is an extremely important statement to ensure that all the bytes are sent over bluetooth before entering sleep mode. Without it, you wouldn't be able to decode the messages properly. Read for more: https://arduino.stackexchange.com/questions/14411/low-power-library-messing-up-serial-text 
     Serial.flush();
     delay(2000);
-    pinMode(ldrGND,INPUT);
+    pinMode(ldrOUT,INPUT); //Turn off LDR
+    pinMode(ldrGND,INPUT); //Turn off LDR
     sleepl(); sleepl(); sleepl(); sleepl(); sleepl(); sleepl(); sleepl();
   }
   else
@@ -148,7 +142,8 @@ void loop()
     Serial.write("l1");
     Serial.flush();
     delay(2000);
-    pinMode(ldrGND,INPUT);
+    pinMode(ldrOUT,INPUT); //Turn off LDR
+    pinMode(ldrGND,INPUT); //Turn off LDR
     sleepl(); sleepl();
   }
 }
