@@ -58,16 +58,40 @@ bool isblink(int scan_blink_iter, int dk_num, int lt_num, int iter)
   }
   else {
   //turn on the ble again.
-    pinMode(ble_gnd,OUTPUT);
-    digitalWrite(ble_gnd,LOW);
-    delay(1000);
+    //turn_on_ble;
+    
+  pinMode(ble_vcc,OUTPUT);
+  pinMode(ble_gnd,OUTPUT);
+  digitalWrite(ble_vcc,HIGH);
+  digitalWrite(ble_gnd,LOW);
+    delay(2000);
     Serial.write("b1");
     Serial.flush();
     ble.write("b1");
     ble.flush();
-    pinMode(ble_gnd,INPUT);
+    //turn_off_ble;
+    
+  pinMode(ble_vcc,INPUT);
+  pinMode(ble_gnd,INPUT);
+  delay(1000);
     return 1;
   }
+}
+
+void turn_on_ble() 
+{
+  pinMode(ble_vcc,OUTPUT);
+  pinMode(ble_gnd,OUTPUT);
+  digitalWrite(ble_vcc,HIGH);
+  digitalWrite(ble_gnd,LOW);
+  delay(1000);
+}
+
+void turn_off_ble() 
+{
+  pinMode(ble_gnd,INPUT);
+  pinMode(ble_vcc,INPUT);
+  delay(1000);
 }
 
 //Sleep functions (no need to change)
@@ -97,8 +121,9 @@ void setup()
   pinMode(ldrGND,OUTPUT);
 
   pinMode(ble_vcc,OUTPUT);
-  pinMode(ble_gnd,INPUT);
+  pinMode(ble_gnd,OUTPUT);
   digitalWrite(ble_vcc,HIGH);
+  digitalWrite(ble_gnd,LOW);
   //9600 is the baud rate of the BLE.
   Serial.begin(9600);
   ble.begin(9600);
@@ -106,7 +131,7 @@ void setup()
 
 //START of main loop.
 void loop()
-{
+{ 
   //Turn on the photoresistor components.
   pinMode(ldrOUT,OUTPUT);
   pinMode(ldrGND,OUTPUT);
@@ -118,31 +143,46 @@ void loop()
   }
   lightVal = analogRead(sensorPin);
   Serial.println(lightVal);
-  ble.write(lightVal);
-  ble.flush();
+  //turn_on_ble;  
+  //ble.write(lightVal);
+  //ble.flush();
   // Check if it is dark.
   if (lightVal < light_threshold)
   {    
   //turn on the ble again.
-    pinMode(ble_gnd,OUTPUT);
-    digitalWrite(ble_gnd,LOW);
-    delay(1000);
+    
+    //turn_on_ble;
+    
+  pinMode(ble_vcc,OUTPUT);
+  pinMode(ble_gnd,OUTPUT);
+  digitalWrite(ble_vcc,HIGH);
+  digitalWrite(ble_gnd,LOW);
+    delay(2000);
     Serial.write("d1");
     //This is an extremely important statement to ensure that all the bytes are sent over bluetooth before entering sleep mode. Without it, you wouldn't be able to decode the messages properly. Read for more: https://arduino.stackexchange.com/questions/14411/low-power-library-messing-up-serial-text 
     Serial.flush();
+    
     ble.write("d1");
     ble.flush();
     delay(2000);
     pinMode(ldrOUT,INPUT); //Turn off LDR
     pinMode(ldrGND,INPUT); //Turn off LDR
-    pinMode(ble_gnd,INPUT); // Turn off the ble
+    //turn_off_ble;
+  pinMode(ble_vcc,INPUT);
+  pinMode(ble_gnd,INPUT);
+  delay(1000);
     sleepl(); sleepl(); sleepl(); sleepl(); sleepl(); sleepl(); sleepl();
   }
   else
   {
   //turn on the ble again.
-    pinMode(ble_gnd,OUTPUT);
-    digitalWrite(ble_gnd,LOW);
+    //turn_on_ble;
+    
+  pinMode(ble_vcc,OUTPUT);
+  pinMode(ble_gnd,OUTPUT);
+  digitalWrite(ble_vcc,HIGH);
+  digitalWrite(ble_gnd,LOW);
+  delay(1000);
     delay(1000);
     Serial.write("l1");
     Serial.flush();
@@ -151,7 +191,11 @@ void loop()
     delay(2000);
     pinMode(ldrOUT,INPUT); //Turn off LDR
     pinMode(ldrGND,INPUT); //Turn off LDR
-    pinMode(ble_gnd,INPUT); // Turn off the ble
+    //turn_off_ble;
+
+    pinMode(ble_vcc,INPUT);
+  pinMode(ble_gnd,INPUT);
+  delay(1000);
     sleepl(); sleepl();
   }
 }
