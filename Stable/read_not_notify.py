@@ -56,7 +56,6 @@ while True:
             i = i+1
     except Exception as e:
         #print(e)
-        #Add sleep mode POST here
         pass
     except FunctionTimedOut as e:
         #print(e)
