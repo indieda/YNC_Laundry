@@ -61,7 +61,7 @@ while True:
                 func_timeout(2.6,read_ble,args=(addr_i,i))
                 if (read_ble.data_decode == "on") or (read_ble.data_decode == "off") or (read_ble.data_decode == "error"): 
                     washer_state_array[i]=read_ble.data_decode
-                    print(data_decode+str(i))
+                    print(read_ble.data_decode+str(i))
                 else:
                     pass
             #upload = threading.Thread(target=stdhandle, args = (read_ble.data_decode,i), daemon = True)                
