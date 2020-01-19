@@ -80,3 +80,30 @@ while True:
         continue
     sleep(0.5)
 
+try:
+        for addr_i in cendana_addr:
+            i = i+1
+            try:
+                func_timeout(0.9,read_ble,args=(addr_i,i))
+                washer_state_array[i]=read_ble.data_decode
+            #upload = threading.Thread(target=stdhandle, args = (read_ble.data_decode,i), daemon = True)
+            except Exception as e:
+                print(e)
+                pass
+            except FunctionTimedOut as e:
+                print(e)
+                pass
+            time_elapsed = time.time() - time_prev
+            if kill[i] > 3:
+                os.system("rfkill block bluetooth")
+                time.sleep(2.0)
+                os.system("rfkill unblock bluetooth")
+                time.sleep(2.0)
+                print("Restarted bluetooth")
+                kill = [0,0]
+            if (time_elapsed > 180):
+                upload_to_web()
+                time_prev = time.time()
+        sleep(2.0)
+    except:
+        pass
