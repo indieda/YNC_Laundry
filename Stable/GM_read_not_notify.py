@@ -82,7 +82,6 @@ while True:
 
 try:
         for addr_i in cendana_addr:
-            i = i+1
             try:
                 func_timeout(0.9,read_ble,args=(addr_i,i))
                 washer_state_array[i]=read_ble.data_decode
@@ -104,6 +103,7 @@ try:
             if (time_elapsed > 180):
                 upload_to_web()
                 time_prev = time.time()
-        sleep(2.0)
+            i = i+1
+            sleep(1.0)
     except:
         pass
