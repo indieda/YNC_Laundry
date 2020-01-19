@@ -54,13 +54,10 @@ def upload_to_web():
         pass
 
 while True:
-    global time_elapsed
-    global time_prev
-    global kill
     i=0
     try:
         for addr_i in cendana_addr:
-            func_timeout(0.8,read_ble,args=(addr_i,i))
+            func_timeout(1.5,read_ble,args=(addr_i,i))
             washer_state_array[i]=read_ble.data_decode
             #upload = threading.Thread(target=stdhandle, args = (read_ble.data_decode,i), daemon = True)
             i = i+1
