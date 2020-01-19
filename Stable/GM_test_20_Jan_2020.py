@@ -48,11 +48,14 @@ def upload_to_web():
             else:
                 response = requests.post(url,json={"Washer {}".format(idx):"Couldn't read..."})
                 kill[idx-1] = kill[idx-1] + 1
+                washer_state_array[idx-1] = "nil"
                 pass
+    
     except Exception as e:
         print(e)
         pass
 
+    
 while True:
     i=0
     try:
