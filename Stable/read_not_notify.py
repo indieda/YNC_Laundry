@@ -41,7 +41,10 @@ def upload_to_web():
         else:
             pass
 
-upload_to_web()
+try:
+    upload_to_web()
+except Exception as e:
+    pass
 
 while True:
     i=0
