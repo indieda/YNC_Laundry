@@ -7,7 +7,7 @@ import datetime
 import requests
 
 url = "https://webhook.site/a03ad0ea-9a75-4928-bad7-e0cae58a3709"
-
+#https://webhook.site/#!/a03ad0ea-9a75-4928-bad7-e0cae58a3709/a5e58475-531e-4a0f-bc84-7bd0882c79ef/1
 cendana_addr = ["ec:24:b8:23:78:29","58:7A:62:17:B8:07"]
 washer_state_array = ["nil","nil"]
 college = "Cendana"
@@ -32,7 +32,7 @@ def upload_to_web():
         for idx,d in enumerate(washer_state_array,start=1):
             if d == "on" :
             #idx = data_decoded[1]
-                response = requests.post(url , json = {'Washer {}'.format(d):'On'})
+                response = requests.post(url , json = {'Washer {}'.format(idx):'On'})
                 print('Washer {}'.format(idx), d ,"and Uploaded")
             elif d == "off" :
                 #idx = data_decoded[1]
