@@ -22,29 +22,29 @@ global i
 i=0
 
 def upload_to_web():
-    t = threading.Timer(5.0,upload_to_web)
-    t.daemon = True
-    t.start()
-    print(washer_state_array)
-    for idx,d in enumerate(washer_state_array,start=1):
-        if d == "on" :
+    try:
+        t = threading.Timer(5.0,upload_to_web)
+        t.daemon = True
+        t.start()
+        print(washer_state_array)
+        for idx,d in enumerate(washer_state_array,start=1):
+            if d == "on" :
             #idx = data_decoded[1]
-            #response = requests.post(url , json = {'Washer {}'.format(d):'On'})
-            print('Washer {}'.format(idx), d ,"and Uploaded")
-        elif d == "off" :
-            #idx = data_decoded[1]
-            response = requests.post(url, json = {'Washer {}'.format(idx):'Off'})
-            print('Washer {}'.format(idx), d ,"and Uploaded")
-        elif d == "error" :
-            response = requests.post(url, json = {'Washer {}'.format(idx):'Error'})
-            print('Washer {}'.format(idx), d ,"and Uploaded")
-        else:
-            pass
-
-try:
-    upload_to_web()
-except Exception as e:
-    pass
+                #response = requests.post(url , json = {'Washer {}'.format(d):'On'})
+                print('Washer {}'.format(idx), d ,"and Uploaded")
+                elif d == "off" :
+                #idx = data_decoded[1]
+                response = requests.post(url, json = {'Washer {}'.format(idx):'Off'})
+                print('Washer {}'.format(idx), d ,"and Uploaded")
+            elif d == "error" :
+                response = requests.post(url, json = {'Washer {}'.format(idx):'Error'})
+                print('Washer {}'.format(idx), d ,"and Uploaded")
+            else:
+                pass
+    except Exception as e:
+        print(e)
+        pass
+upload_to_web()
 
 while True:
     i=0
