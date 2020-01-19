@@ -32,7 +32,7 @@ def upload_to_web():
             #idx = data_decoded[1]
                 #response = requests.post(url , json = {'Washer {}'.format(d):'On'})
                 print('Washer {}'.format(idx), d ,"and Uploaded")
-                elif d == "off" :
+            elif d == "off" :
                 #idx = data_decoded[1]
                 response = requests.post(url, json = {'Washer {}'.format(idx):'Off'})
                 print('Washer {}'.format(idx), d ,"and Uploaded")
