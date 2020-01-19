@@ -60,7 +60,7 @@ bool isblink(int scan_blink_iter, int dk_num, int lt_num, int iter)
     pinMode(ble_gnd, OUTPUT);
     digitalWrite(ble_vcc, HIGH);
     digitalWrite(ble_gnd, LOW);
-    delay(1388);
+    delay(500);
     ble.write("error");
     ble.flush();
     delay(3000);
@@ -127,7 +127,7 @@ void loop()
     pinMode(ble_gnd, OUTPUT);
     digitalWrite(ble_vcc, HIGH);
     digitalWrite(ble_gnd, LOW);
-    delay(1300);
+    delay(500);
 
     ble.write("off");
     ble.flush();     //This is an extremely important statement to ensure that all the bytes are sent over bluetooth before entering sleep mode. Without it, you wouldn't be able to decode the messages properly. Read for more: https://arduino.stackexchange.com/questions/14411/low-power-library-messing-up-serial-text
@@ -145,7 +145,7 @@ void loop()
     pinMode(ble_gnd, OUTPUT);
     digitalWrite(ble_vcc, HIGH);
     digitalWrite(ble_gnd, LOW);
-    delay(1388);
+    delay(500);
     ble.write("on");
     ble.flush();
     pinMode(ldrOUT, INPUT); //Turn off LDR
