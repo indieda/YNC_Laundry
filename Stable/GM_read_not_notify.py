@@ -4,7 +4,7 @@ from func_timeout import func_timeout, FunctionTimedOut
 import time
 import threading
 
-url = 'http://webhook.site/9bc8eff7-fde0-4ffd-8e70-dfb12d85efae'
+url = "https://webhook.site/a03ad0ea-9a75-4928-bad7-e0cae58a3709"
 
 cendana_addr = ["ec:24:b8:23:78:29","58:7A:62:17:B8:07"]
 washer_state_array = ["nil","nil"]
@@ -23,14 +23,14 @@ i=0
 
 def upload_to_web():
     try:
-        t = threading.Timer(5.0,upload_to_web)
+        t = threading.Timer(180.0,upload_to_web)
         t.daemon = True
         t.start()
         print(washer_state_array)
         for idx,d in enumerate(washer_state_array,start=1):
             if d == "on" :
             #idx = data_decoded[1]
-                #response = requests.post(url , json = {'Washer {}'.format(d):'On'})
+                response = requests.post(url , json = {'Washer {}'.format(d):'On'})
                 print('Washer {}'.format(idx), d ,"and Uploaded")
             elif d == "off" :
                 #idx = data_decoded[1]
@@ -61,15 +61,4 @@ while True:
         #print(e)
         continue
     sleep(0.5)
-    
 
-'''from bluepy.btle import DefaultDelegate
-class MyDelegate(DefaultDelegate):
-    def __init__(self):
-        DefaultDelegate.__init__(self)
-        
-    def handleNotification(self,hnd,data):
-    
-conn = Peripheral(addr)
-print conn.readCharacteristic(0x0025)
-'''
