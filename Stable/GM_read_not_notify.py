@@ -42,6 +42,7 @@ def upload_to_web():
                 response = requests.post(url, json = {'Washer {}'.format(idx):'Error'})
                 print('Washer {}'.format(idx), d ,"and Uploaded")
             else:
+                response = requests.post(url,json={"Washer {}".format(idx):"Couldn't read..."})
                 pass
     except Exception as e:
         print(e)
