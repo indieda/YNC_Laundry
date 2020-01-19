@@ -12,6 +12,10 @@ cendana_addr = ["ec:24:b8:23:78:29","58:7A:62:17:B8:07"]
 washer_state_array = ["nil","nil"]
 college = "Cendana"
 
+time_prev = time.time()
+time_elapsed = time.time() - time_prev
+kill = [0,0]
+
 def read_ble(ble_no,i):
     conn = btle.Peripheral(ble_no)
     data = conn.readCharacteristic(0x0025)
@@ -25,9 +29,9 @@ i=0
 
 def upload_to_web():
     try:
-        t = threading.Timer(180.0,upload_to_web)
-        t.daemon = True
-        t.start()
+        #t = threading.Timer(180.0,upload_to_web)
+        #t.daemon = True
+        #t.start()
         print(washer_state_array)
         for idx,d in enumerate(washer_state_array,start=1):
             if d == "on" :
@@ -43,13 +47,16 @@ def upload_to_web():
                 print('Washer {}'.format(idx), d ,"and Uploaded")
             else:
                 response = requests.post(url,json={"Washer {}".format(idx):"Couldn't read..."})
+                kill[idx-1] = kill[idx-1] + 1
                 pass
     except Exception as e:
         print(e)
         pass
-upload_to_web()
 
 while True:
+    global time_elapsed
+    global time_prev
+    global kill
     i=0
     try:
         for addr_i in cendana_addr:
@@ -57,6 +64,17 @@ while True:
             washer_state_array[i]=read_ble.data_decode
             #upload = threading.Thread(target=stdhandle, args = (read_ble.data_decode,i), daemon = True)
             i = i+1
+            time_elapsed = time.time() - time_prev
+            if kill[i] > 3:
+                os.system("rfkill block bluetooth")
+                time.sleep(2.0)
+                os.system("rfkill unblock bluetooth")
+                time.sleep(2.0)
+                print("Restarted bluetooth")
+                kill = [0,0]
+            if (time_elapsed > 180):
+                upload_to_web()
+                time_prev = time.time()
     except Exception as e:
         #print(e)
         pass
