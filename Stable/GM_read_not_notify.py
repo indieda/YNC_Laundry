@@ -87,10 +87,10 @@ try:
                 washer_state_array[i]=read_ble.data_decode
             #upload = threading.Thread(target=stdhandle, args = (read_ble.data_decode,i), daemon = True)
             except Exception as e:
-                print(e)
+                #print(e)
                 pass
             except FunctionTimedOut as e:
-                print(e)
+                #print(e)
                 pass
             time_elapsed = time.time() - time_prev
             if kill[i] > 3:
@@ -106,5 +106,5 @@ try:
             i = i+1
             sleep(1.0)
     except Exception as e:
-        print(e)
+        #print(e)
         pass
