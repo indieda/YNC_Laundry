@@ -61,6 +61,7 @@ try:
         for addr_i in cendana_addr:
             try:
                 func_timeout(2.6,read_ble,args=(addr_i,i))
+                #Consider adding a line that says if read_ble.data_decode == "on" or "off" or "error": washer_state_aray[i]=...
                 washer_state_array[i]=read_ble.data_decode
             #upload = threading.Thread(target=stdhandle, args = (read_ble.data_decode,i), daemon = True)
             except Exception as e:
