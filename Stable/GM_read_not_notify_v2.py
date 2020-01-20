@@ -1,3 +1,4 @@
+#! /usr/bin/python3
 from bluepy import btle
 from time import sleep
 from func_timeout import func_timeout, FunctionTimedOut
@@ -14,6 +15,7 @@ washer_state_array = ["nil","nil"]
 college = "Cendana"
 
 time_prev = time.time()
+time_exit = time.time()
 time_elapsed = time.time() - time_prev
 kill = [0,0]
 
@@ -65,21 +67,21 @@ time.sleep(2.0)
 os.system("rfkill unblock bluetooth")
 time.sleep(2.0)
 print("Restarted bluetooth")
-               
+
 print("Starting infinite loop")
-while True:
+while (time.time() - time_exit < 1180):
     i=0
     try:
         for addr_i in cendana_addr:
             try:
                 func_timeout(0.8,read_ble,args=(addr_i,i))
-                if (read_ble.data_decode == "on") or (read_ble.data_decode == "off") or (read_ble.data_decode == "error"): 
+                if (read_ble.data_decode == "on") or (read_ble.data_decode == "off") or (read_ble.data_decode == "error"):
                     washer_state_array[i]=read_ble.data_decode
                     print(read_ble.data_decode+str(i))
                     print(datetime.datetime.now())
                 else:
                     pass
-            #upload = threading.Thread(target=stdhandle, args = (read_ble.data_decode,i), daemon = True)                
+            #upload = threading.Thread(target=stdhandle, args = (read_ble.data_decode,i), daemon = True)
             except Exception as e:
                 #print(e)
                 pass
@@ -87,12 +89,12 @@ while True:
                 #print(e)
                 pass
             time_elapsed = time.time() - time_prev
-            
+
             if kill[i] > 30:
                 kill = [0,0]
-                print("restarting program")
-                os.fsync(fd)
-                os.execv(__file__, sys.argv)
+                #print("restarting program")
+                #os.fsync(fd)
+                #os.execv(__file__, sys.argv)
             if (time_elapsed > 8):
                 upload_to_web()
                 time_prev = time.time()
@@ -101,3 +103,5 @@ while True:
     except Exception as e:
         #print(e)
         pass
+
+exit()
