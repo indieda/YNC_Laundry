@@ -5,7 +5,7 @@ import time
 import threading
 import datetime, requests, os, sys
 
-url = "https://enrixpn98m8gp.x.pipedream.net"
+url = "https://enrixpn98m8gp.x.pipedream.ne"
 #"https://webhook.site/d9cae541-78e7-48de-8791-79d8eccf84d7"
 #19th Jan https://webhook.site/#!/a03ad0ea-9a75-4928-bad7-e0cae58a3709/a5e58475-531e-4a0f-bc84-7bd0882c79ef/1
 #20th Jan https://webhook.site/#!/d9cae541-78e7-48de-8791-79d8eccf84d7/7ed9cfff-c943-4f45-9166-1f33090c9fb1/1
@@ -21,10 +21,10 @@ def read_ble(ble_no,i):
     try:
         conn = btle.Peripheral(ble_no)
         data = conn.readCharacteristic(0x0025)
-        data_decode = data.decode('utf8')
+        read_ble.data_decode = data.decode('utf8')
     #print(data.decode('utf8')+str(i))
         conn.disconnect()
-        read_ble.data_decode = data_decode
+        #read_ble.data_decode = data_decode
     except Exception as e:
         conn.disconnect()
         pass
@@ -88,12 +88,12 @@ while True:
                 pass
             time_elapsed = time.time() - time_prev
             
-            if kill[i] > 3:
+            if kill[i] > 30:
                 kill = [0,0]
                 print("restarting program")
                 os.fsync(fd)
                 os.execv(__file__, sys.argv)
-            if (time_elapsed > 360):
+            if (time_elapsed > 8):
                 upload_to_web()
                 time_prev = time.time()
             i = i+1
