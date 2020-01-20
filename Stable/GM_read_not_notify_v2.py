@@ -3,9 +3,7 @@ from time import sleep
 from func_timeout import func_timeout, FunctionTimedOut
 import time
 import threading
-import datetime
-import requests
-import datetime
+import datetime, requests, os, sys
 
 url = "https://webhook.site/a03ad0ea-9a75-4928-bad7-e0cae58a3709"
 #https://webhook.site/#!/a03ad0ea-9a75-4928-bad7-e0cae58a3709/a5e58475-531e-4a0f-bc84-7bd0882c79ef/1
@@ -59,12 +57,20 @@ def upload_to_web():
         print(e)
         pass
 
+
+os.system("rfkill block bluetooth")
+time.sleep(2.0)
+os.system("rfkill unblock bluetooth")
+time.sleep(2.0)
+print("Restarted bluetooth")
+               
+print("Starting infinite loop")
 while True:
     i=0
     try:
         for addr_i in cendana_addr:
             try:
-                func_timeout(2.6,read_ble,args=(addr_i,i))
+                func_timeout(0.8,read_ble,args=(addr_i,i))
                 if (read_ble.data_decode == "on") or (read_ble.data_decode == "off") or (read_ble.data_decode == "error"): 
                     washer_state_array[i]=read_ble.data_decode
                     print(read_ble.data_decode+str(i))
@@ -79,15 +85,12 @@ while True:
                 #print(e)
                 pass
             time_elapsed = time.time() - time_prev
-            '''
+            
             if kill[i] > 3:
-                os.system("rfkill block bluetooth")
-                time.sleep(2.0)
-                os.system("rfkill unblock bluetooth")
-                time.sleep(2.0)
-                print("Restarted bluetooth")
                 kill = [0,0]
-            '''
+                print("restarting program")
+                os.fsync(fd)
+                os.execv(__file__, sys.argv)
             if (time_elapsed > 180):
                 upload_to_web()
                 time_prev = time.time()
