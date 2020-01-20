@@ -68,7 +68,7 @@ while True:
                 if (read_ble.data_decode == "on") or (read_ble.data_decode == "off") or (read_ble.data_decode == "error"): 
                     washer_state_array[i]=read_ble.data_decode
                     print(read_ble.data_decode+str(i))
-                    print(datetime.now())
+                    print(datetime.datetime.now())
                 else:
                     pass
             #upload = threading.Thread(target=stdhandle, args = (read_ble.data_decode,i), daemon = True)                
