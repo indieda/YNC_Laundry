@@ -28,8 +28,8 @@ unsigned tmd = SLEEP_8S;
 //control how long between each blinking check
 unsigned tmib = SLEEP_250MS;
 
-int blinking_differential_thresh = 6;
-
+int blinking_differential_thresh = 10;
+int start_status = 0;
 //General functions to be used:
 //1- check if light is blinking
 //We create a function/method that does a search for 5 seconds, checking if the LED is blinking, or in a steady state.
@@ -60,7 +60,7 @@ bool isblink(int scan_blink_iter, int dk_num, int lt_num, int iter)
     pinMode(ble_gnd, OUTPUT);
     digitalWrite(ble_vcc, HIGH);
     digitalWrite(ble_gnd, LOW);
-    delay(500);
+    delay(888);
     ble.write("error");
     ble.flush();
     delay(3000);
@@ -101,7 +101,7 @@ void setup()
   pinMode(ble_gnd, OUTPUT);
   digitalWrite(ble_vcc, HIGH);
   digitalWrite(ble_gnd, LOW); //Turn on BLE
-  //Serial.begin(9600); 
+  //Serial.begin(9600);
 }
 
 //START of main loop.
@@ -114,45 +114,60 @@ void loop()
   digitalWrite(ldrGND, LOW);
 
   //Take a reading using analogRead() on sensor pin and store it in lightVal
-  while (isblink(scan_blink_iter, 0, 0, 0)) {
-    continue;
-  }
   //lightVal = analogRead(sensorPin);
   //Serial.println(lightVal);
-
-  if (lightVal < light_threshold) // Check if it is dark.
+  if (start_status > 0)
   {
-    //turn_on_ble;
-    pinMode(ble_vcc, OUTPUT);
-    pinMode(ble_gnd, OUTPUT);
-    digitalWrite(ble_vcc, HIGH);
-    digitalWrite(ble_gnd, LOW);
-    delay(500);
-
-    ble.write("off");
-    ble.flush();     //This is an extremely important statement to ensure that all the bytes are sent over bluetooth before entering sleep mode. Without it, you wouldn't be able to decode the messages properly. Read for more: https://arduino.stackexchange.com/questions/14411/low-power-library-messing-up-serial-text
-    pinMode(ldrOUT, INPUT); //Turn off LDR
-    pinMode(ldrGND, INPUT); //Turn off LDR
-    delay(3000);
-    pinMode(ble_vcc,INPUT); //Turn off BLE
-    pinMode(ble_gnd,INPUT);
-    sleepd(); sleepd(); sleepd(); sleepd(); sleepd(); sleepd(); sleepd();sleepd();
+    while (isblink(scan_blink_iter, 0, 0, 0))
+    {
+      return;
+    }
   }
   else
   {
-    //turn_on_ble;
-    pinMode(ble_vcc, OUTPUT);
+  }
+  if (lightVal < light_threshold) // Check if it is dark.
+  {
+    start_status = 1;
+    pinMode(ldrOUT, INPUT); //Turn off LDR
+    pinMode(ldrGND, INPUT); //Turn off LDR
+    pinMode(ble_vcc, OUTPUT);//turn_on_ble;
     pinMode(ble_gnd, OUTPUT);
     digitalWrite(ble_vcc, HIGH);
     digitalWrite(ble_gnd, LOW);
-    delay(500);
-    ble.write("on");
-    ble.flush();
+    delay(888);
+    ble.write("off");
+    ble.flush();     //This is an extremely important statement to ensure that all the bytes are sent over bluetooth before entering sleep mode. Without it, you wouldn't be able to decode the messages properly. Read for more: https://arduino.stackexchange.com/questions/14411/low-power-library-messing-up-serial-text
+    delay(3000);
+    pinMode(ble_vcc, INPUT); //Turn off BLE
+    pinMode(ble_gnd, INPUT);
+    sleepd(); sleepd(); sleepd(); sleepd(); sleepd(); sleepd(); sleepd(); sleepd();
+  }
+  else
+  {
+    start_status = 0;
     pinMode(ldrOUT, INPUT); //Turn off LDR
     pinMode(ldrGND, INPUT); //Turn off LDR
+    pinMode(ble_vcc, OUTPUT); //turn_on_ble
+    pinMode(ble_gnd, OUTPUT);//turn_on_ble
+    digitalWrite(ble_vcc, HIGH);//turn_on_ble
+    digitalWrite(ble_gnd, LOW);//turn_on_ble
+    delay(888);
+    ble.write("on");
+    ble.flush();
     delay(3000);
-    pinMode(ble_vcc,INPUT);//turn_off_ble;
-    pinMode(ble_gnd,INPUT);//turn_off_ble;
+    pinMode(ble_vcc, INPUT); //turn_off_ble;
+    pinMode(ble_gnd, INPUT); //turn_off_ble;
     sleepl(); sleepl(); sleepl(); sleepl();
   }
 }
+
+/* For Future reference: For the peripheral to read and input and print out the commands.
+  while (Serial.available() > 0)
+     {
+         comdata = Serial.readString();
+         delay(15);
+         Serial.print(comdata);
+        Serial.println("");
+     }
+*/
