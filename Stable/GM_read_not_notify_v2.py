@@ -5,7 +5,7 @@ import time
 import threading
 import datetime, requests, os, sys
 
-url = "https://enrixpn98m8gp.x.pipedream.ne"
+url = "https://enrixpn98m8gp.x.pipedream.net"
 #"https://webhook.site/d9cae541-78e7-48de-8791-79d8eccf84d7"
 #19th Jan https://webhook.site/#!/a03ad0ea-9a75-4928-bad7-e0cae58a3709/a5e58475-531e-4a0f-bc84-7bd0882c79ef/1
 #20th Jan https://webhook.site/#!/d9cae541-78e7-48de-8791-79d8eccf84d7/7ed9cfff-c943-4f45-9166-1f33090c9fb1/1
@@ -51,7 +51,7 @@ def upload_to_web():
                 response = requests.post(url, json = {'Washer {}'.format(idx):'Error'})
                 print('Washer {}'.format(idx), d ,"and Uploaded")
             else:
-                response = requests.post(url,json={"Washer {}".format(idx):"Couldn't read..."})
+                #response = requests.post(url,json={"Washer {}".format(idx):"Couldn't read..."})
                 kill[idx-1] = kill[idx-1] + 1
                 pass
             washer_state_array[idx-1] = "nil"
