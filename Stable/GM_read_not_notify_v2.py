@@ -4,7 +4,7 @@ from time import sleep
 from func_timeout import func_timeout, FunctionTimedOut
 import time
 import threading
-import datetime, requests, os, sys
+import datetime, requests, os, sys, logging
 
 url = "https://enrixpn98m8gp.x.pipedream.net"
 #"https://webhook.site/d9cae541-78e7-48de-8791-79d8eccf84d7"
@@ -17,7 +17,7 @@ college = "Cendana"
 time_prev = time.time()
 time_exit = time.time()
 time_elapsed = time.time() - time_prev
-kill = [0,0]
+#kill = [0,0]
 
 def read_ble(ble_no,i):
     try:
@@ -54,7 +54,7 @@ def upload_to_web():
                 print('Washer {}'.format(idx), d ,"and Uploaded")
             else:
                 #response = requests.post(url,json={"Washer {}".format(idx):"Couldn't read..."})
-                kill[idx-1] = kill[idx-1] + 1
+                #kill[idx-1] = kill[idx-1] + 1
                 pass
             washer_state_array[idx-1] = "nil"
     except Exception as e:
@@ -69,7 +69,7 @@ time.sleep(2.0)
 print("Restarted bluetooth")
 
 print("Starting infinite loop")
-while (time.time() - time_exit < 1180):
+while (time.time() - time_exit < 1165):
     i=0
     try:
         for addr_i in cendana_addr:
@@ -90,8 +90,8 @@ while (time.time() - time_exit < 1180):
                 pass
             time_elapsed = time.time() - time_prev
 
-            if kill[i] > 30:
-                kill = [0,0]
+            #if kill[i] > 30:
+                #kill = [0,0]
                 #print("restarting program")
                 #os.fsync(fd)
                 #os.execv(__file__, sys.argv)
