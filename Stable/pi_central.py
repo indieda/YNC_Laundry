@@ -10,7 +10,7 @@ url = "https://enrixpn98m8gp.x.pipedream.net"
 #"https://webhook.site/d9cae541-78e7-48de-8791-79d8eccf84d7"
 #19th Jan https://webhook.site/#!/a03ad0ea-9a75-4928-bad7-e0cae58a3709/a5e58475-531e-4a0f-bc84-7bd0882c79ef/1
 #20th Jan https://webhook.site/#!/d9cae541-78e7-48de-8791-79d8eccf84d7/7ed9cfff-c943-4f45-9166-1f33090c9fb1/1
-cendana_addr = ["ec:24:b8:23:78:29","58:7A:62:17:B8:07"]
+cendana_addr = ["EC:24:B8:23:78:29","58:7A:62:17:B8:07"]
 washer_state_array = ["nil","nil"]
 college = "Cendana"
 
@@ -43,14 +43,14 @@ def upload_to_web():
         for idx,d in enumerate(washer_state_array,start=1):
             if d == "on" :
             #idx = data_decoded[1]
-                response = requests.post(url , json = {'Washer {}'.format(idx):'On'})
+                response = requests.post(url , json = {'Washer 6':'On'})
                 print('Washer {}'.format(idx), d ,"and Uploaded")
             elif d == "off" :
                 #idx = data_decoded[1]
-                response = requests.post(url, json = {'Washer {}'.format(idx):'Off'})
+                response = requests.post(url, json = {'Washer 6':'Off'})
                 print('Washer {}'.format(idx), d ,"and Uploaded")
             elif d == "error" :
-                response = requests.post(url, json = {'Washer {}'.format(idx):'Error'})
+                response = requests.post(url, json = {'Washer 6':'Error'})
                 print('Washer {}'.format(idx), d ,"and Uploaded")
             elif ((d == "first") or (d == "second") or (d == "third") or (d == "fourth") or (d == "fifth")  or (d == "sixth")  or (d == "seventh")  or (d == "eigth")  or (d == "ninth")  or (d == "tenth")  or (d == "max")):
                 response = requests.post(url,json={"Washer {} ble message: {}".format(idx,d):"Lightval"})
@@ -71,7 +71,7 @@ time.sleep(2.0)
 print("Restarted bluetooth")
 
 print("Starting infinite loop")
-while (time.time() - time_exit < 325):
+while (time.time() - time_exit < 570):
     i=0
     try:
         for addr_i in cendana_addr:
