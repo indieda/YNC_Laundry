@@ -19,7 +19,7 @@ SoftwareSerial ble(9, 8); //RXD,TXD
 int lightCal, lightVal, dk, lt, dk_num, lt_num, iter, darkval;
 
 //ensure you start the device with the photodiode pointing at the LED when dark, not when bright.
-const int light_threshold = 150;
+const int light_threshold = 735;
 
 //Things that you can update:
 int scan_blink_iter = 12;
@@ -49,9 +49,11 @@ bool isblink(int scan_blink_iter, int dk_num, int lt_num, int iter)
   }
   //Possibility to add an exponential function here, that scales to a higher threshold as the number of cycles increase.
   if ((dk_num - lt_num) > blinking_differential_thresh) {
+    start_status = 0;
     return 0;
   }
   else if ((dk_num - lt_num) < -blinking_differential_thresh) {
+    start_status = 1;
     return 0;
   }
   else {
@@ -93,7 +95,7 @@ void setup()
   lightCal = analogRead(sensorPin);
   //we will take a single reading from the light sensor and store it in the lightCal
   //variable. This will give us a prelinary value to compare against in the loop
-  //darkval = analogRead(sensorPin);
+  darkval = analogRead(sensorPin);
   pinMode(ldrOUT, OUTPUT);
   pinMode(ldrGND, OUTPUT);
 
@@ -112,23 +114,177 @@ void loop()
   pinMode(ldrGND, OUTPUT);
   digitalWrite(ldrOUT, HIGH);
   digitalWrite(ldrGND, LOW);
+  delay(500);
+  lightVal = analogRead(sensorPin);
+  if (lightVal < 100)
+  {
+    pinMode(ble_vcc, OUTPUT);//turn_on_ble;
+    pinMode(ble_gnd, OUTPUT);
+    digitalWrite(ble_vcc, HIGH);
+    digitalWrite(ble_gnd, LOW);
+    delay(888);
+   // Serial.println("off");
+    //Serial.flush();
+    ble.write("first");
+    ble.flush();     //This is an extremely important statement to ensure that all the bytes are sent over bluetooth before entering sleep mode. Without it, you wouldn't be able to decode the messages properly. Read for more: https://arduino.stackexchange.com/questions/14411/low-power-library-messing-up-serial-text
+    delay(3000);
+    }
+    else if (lightVal > 99 and lightVal<200)
+  {
+    pinMode(ble_vcc, OUTPUT);//turn_on_ble;
+    pinMode(ble_gnd, OUTPUT);
+    digitalWrite(ble_vcc, HIGH);
+    digitalWrite(ble_gnd, LOW);
+    delay(888);
+   // Serial.println("off");
+    //Serial.flush();
+    ble.write("second");
+    ble.flush();     //This is an extremely important statement to ensure that all the bytes are sent over bluetooth before entering sleep mode. Without it, you wouldn't be able to decode the messages properly. Read for more: https://arduino.stackexchange.com/questions/14411/low-power-library-messing-up-serial-text
+    delay(3000);
+    }
+    else if (lightVal > 199 and lightVal<300)
+  {
+    pinMode(ble_vcc, OUTPUT);//turn_on_ble;
+    pinMode(ble_gnd, OUTPUT);
+    digitalWrite(ble_vcc, HIGH);
+    digitalWrite(ble_gnd, LOW);
+    delay(888);
+   // Serial.println("off");
+    //Serial.flush();
+    ble.write("third");
+    ble.flush();     //This is an extremely important statement to ensure that all the bytes are sent over bluetooth before entering sleep mode. Without it, you wouldn't be able to decode the messages properly. Read for more: https://arduino.stackexchange.com/questions/14411/low-power-library-messing-up-serial-text
+    delay(3000);
+    }
+    else if (lightVal > 299 and lightVal<400)
+  {
+    pinMode(ble_vcc, OUTPUT);//turn_on_ble;
+    pinMode(ble_gnd, OUTPUT);
+    digitalWrite(ble_vcc, HIGH);
+    digitalWrite(ble_gnd, LOW);
+    delay(888);
+   // Serial.println("off");
+    //Serial.flush();
+    ble.write("fourth");
+    ble.flush();     //This is an extremely important statement to ensure that all the bytes are sent over bluetooth before entering sleep mode. Without it, you wouldn't be able to decode the messages properly. Read for more: https://arduino.stackexchange.com/questions/14411/low-power-library-messing-up-serial-text
+    delay(3000);
+    }
+    else if (lightVal > 399 and lightVal<500)
+  {
+    pinMode(ble_vcc, OUTPUT);//turn_on_ble;
+    pinMode(ble_gnd, OUTPUT);
+    digitalWrite(ble_vcc, HIGH);
+    digitalWrite(ble_gnd, LOW);
+    delay(888);
+   // Serial.println("off");
+    //Serial.flush();
+    ble.write("fifth");
+    ble.flush();     //This is an extremely important statement to ensure that all the bytes are sent over bluetooth before entering sleep mode. Without it, you wouldn't be able to decode the messages properly. Read for more: https://arduino.stackexchange.com/questions/14411/low-power-library-messing-up-serial-text
+    delay(3000);
+    }
+    else if (lightVal > 499 and lightVal<600)
+  {
+    pinMode(ble_vcc, OUTPUT);//turn_on_ble;
+    pinMode(ble_gnd, OUTPUT);
+    digitalWrite(ble_vcc, HIGH);
+    digitalWrite(ble_gnd, LOW);
+    delay(888);
+   // Serial.println("off");
+    //Serial.flush();
+    ble.write("sixth");
+    ble.flush();     //This is an extremely important statement to ensure that all the bytes are sent over bluetooth before entering sleep mode. Without it, you wouldn't be able to decode the messages properly. Read for more: https://arduino.stackexchange.com/questions/14411/low-power-library-messing-up-serial-text
+    delay(3000);
+    }
+    else if (lightVal > 599 and lightVal<700)
+  {
+    pinMode(ble_vcc, OUTPUT);//turn_on_ble;
+    pinMode(ble_gnd, OUTPUT);
+    digitalWrite(ble_vcc, HIGH);
+    digitalWrite(ble_gnd, LOW);
+    delay(888);
+   // Serial.println("off");
+    //Serial.flush();
+    ble.write("seventh");
+    ble.flush();     //This is an extremely important statement to ensure that all the bytes are sent over bluetooth before entering sleep mode. Without it, you wouldn't be able to decode the messages properly. Read for more: https://arduino.stackexchange.com/questions/14411/low-power-library-messing-up-serial-text
+    delay(3000);
+    }
+    else if (lightVal > 699 and lightVal<800)
+  {
+    pinMode(ble_vcc, OUTPUT);//turn_on_ble;
+    pinMode(ble_gnd, OUTPUT);
+    digitalWrite(ble_vcc, HIGH);
+    digitalWrite(ble_gnd, LOW);
+    delay(888);
+   // Serial.println("off");
+    //Serial.flush();
+    ble.write("eigth");
+    ble.flush();     //This is an extremely important statement to ensure that all the bytes are sent over bluetooth before entering sleep mode. Without it, you wouldn't be able to decode the messages properly. Read for more: https://arduino.stackexchange.com/questions/14411/low-power-library-messing-up-serial-text
+    delay(3000);
+    }
+    else if (lightVal > 799 and lightVal<900)
+  {
+    pinMode(ble_vcc, OUTPUT);//turn_on_ble;
+    pinMode(ble_gnd, OUTPUT);
+    digitalWrite(ble_vcc, HIGH);
+    digitalWrite(ble_gnd, LOW);
+    delay(888);
+   // Serial.println("off");
+    //Serial.flush();
+    ble.write("ninth");
+    ble.flush();     //This is an extremely important statement to ensure that all the bytes are sent over bluetooth before entering sleep mode. Without it, you wouldn't be able to decode the messages properly. Read for more: https://arduino.stackexchange.com/questions/14411/low-power-library-messing-up-serial-text
+    delay(3000);
+    }
+    else if (lightVal > 899 and lightVal<1000)
+  {
+    pinMode(ble_vcc, OUTPUT);//turn_on_ble;
+    pinMode(ble_gnd, OUTPUT);
+    digitalWrite(ble_vcc, HIGH);
+    digitalWrite(ble_gnd, LOW);
+    delay(888);
+   // Serial.println("off");
+    //Serial.flush();
+    ble.write("tenth");
+    ble.flush();     //This is an extremely important statement to ensure that all the bytes are sent over bluetooth before entering sleep mode. Without it, you wouldn't be able to decode the messages properly. Read for more: https://arduino.stackexchange.com/questions/14411/low-power-library-messing-up-serial-text
+    delay(3000);
+    }
+    
+    else if (lightVal > 999 and lightVal<1100)
+  {
+    pinMode(ble_vcc, OUTPUT);//turn_on_ble;
+    pinMode(ble_gnd, OUTPUT);
+    digitalWrite(ble_vcc, HIGH);
+    digitalWrite(ble_gnd, LOW);
+    delay(888);
+   // Serial.println("off");
+    //Serial.flush();
+    ble.write("max");
+    ble.flush();     //This is an extremely important statement to ensure that all the bytes are sent over bluetooth before entering sleep mode. Without it, you wouldn't be able to decode the messages properly. Read for more: https://arduino.stackexchange.com/questions/14411/low-power-library-messing-up-serial-text
+    delay(3000);
+    }
+    
 
+  
+  /*
   //Take a reading using analogRead() on sensor pin and store it in lightVal
-  //lightVal = analogRead(sensorPin);
-  //Serial.println(lightVal);
+  lightVal = analogRead(sensorPin);
+  Serial.println(lightVal);
+  Serial.flush();
+  */
   if (start_status > 0)
   {
     while (isblink(scan_blink_iter, 0, 0, 0))
     {
-      return;
+      //return;
     }
   }
   else
   {
   }
+
+lightVal = analogRead(sensorPin);
+  
   if (lightVal < light_threshold) // Check if it is dark.
   {
-    start_status = 1;
+    start_status = 0;
     pinMode(ldrOUT, INPUT); //Turn off LDR
     pinMode(ldrGND, INPUT); //Turn off LDR
     pinMode(ble_vcc, OUTPUT);//turn_on_ble;
@@ -136,6 +292,8 @@ void loop()
     digitalWrite(ble_vcc, HIGH);
     digitalWrite(ble_gnd, LOW);
     delay(888);
+   // Serial.println("off");
+    //Serial.flush();
     ble.write("off");
     ble.flush();     //This is an extremely important statement to ensure that all the bytes are sent over bluetooth before entering sleep mode. Without it, you wouldn't be able to decode the messages properly. Read for more: https://arduino.stackexchange.com/questions/14411/low-power-library-messing-up-serial-text
     delay(3000);
@@ -145,7 +303,7 @@ void loop()
   }
   else
   {
-    start_status = 0;
+    start_status = 1;
     pinMode(ldrOUT, INPUT); //Turn off LDR
     pinMode(ldrGND, INPUT); //Turn off LDR
     pinMode(ble_vcc, OUTPUT); //turn_on_ble
