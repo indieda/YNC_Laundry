@@ -329,7 +329,7 @@ lightVal = analogRead(sensorPin);
       sleepd(); sleepd(); sleepd(); sleepd(); sleepd(); sleepd(); sleepd(); sleepd();
     }
   }
-  else if (lightVal < light_threshold)
+  else
   {
     start_status = 1;
     pinMode(ldrOUT, INPUT); //Turn off LDR
