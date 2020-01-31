@@ -1,3 +1,4 @@
+#Adapted from http://thezanshow.com/electronics-tutorials/raspberry-pi/tutorial-10
 from urllib.request import urlopen
 import re
 import smtplib
@@ -20,6 +21,7 @@ request = urlopen(url).read().decode('utf-8')
 # We extract the IP address only
 ourIP = re.findall("\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}", request)
 ourIP = str(ourIP)
+#https://stackoverflow.com/questions/166506/finding-local-ip-addresses-using-pythons-stdlib
 internalIP = socket.socket(socket.AF_INET,socket.SOCK_DGRAM)
 internalIP.connect(("8.8.8.8",80))
 ip_to_send = str(internalIP.getsockname()[0])
