@@ -38,9 +38,11 @@ i=0
 
 def write_log(message):
     f=open("log.txt","a")
-    t=datetime.now()
-    f.write("Time of event: ",t," Message: ", message,"\n")
-    f.close()
+    try:
+        t=datetime.now()
+        f.write("Time of event: ",t," Message: ", message,"\n")
+    finally:
+        f.close()
 
 def upload_to_web():
     try:
