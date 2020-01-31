@@ -2,9 +2,10 @@
 from bluepy import btle
 from time import sleep
 from func_timeout import func_timeout, FunctionTimedOut
+from datetime import datetime
 import time
 import threading
-import datetime, requests, os, sys, logging
+import requests, os, sys, logging
 
 ync_url="https://fb63a24c.ngrok.io"
 url = "https://enrixpn98m8gp.x.pipedream.net"
