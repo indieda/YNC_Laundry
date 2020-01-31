@@ -46,16 +46,16 @@ def upload_to_web():
         for idx,d in enumerate(washer_state_array,0):
             if d == "on" :
             #idx = data_decoded[1]
-                response = requests.post(url , json = {'Washer 6':'On'})
+                response = requests.post(url , json = {'Washer 6':'On, not available to use'})
                 #response2 = requests.post(ync_url , json = {'Washer 6':'On'})
                 print('Washer {}'.format(idx), d ,"and Uploaded")
             elif d == "off" :
                 #idx = data_decoded[1]
-                response = requests.post(url, json = {'Washer 6':'Off'})
+                response = requests.post(url, json = {'Washer 6':'Off, available to use'})
                 #response2 = requests.post(ync_url , json = {'Washer 6':'Off'})
                 print('Washer {}'.format(idx), d ,"and Uploaded")
             elif d == "error" :
-                response = requests.post(url, json = {'Washer 6':'Error'})
+                response = requests.post(url, json = {'Washer 6':'Error, the lock light is blinking!'})
                 #response2 = requests.post(ync_url , json = {'Washer 6':'Error'})
                 print('Washer {}'.format(idx), d ,"and Uploaded")
             elif ((d == "first") or (d == "second") or (d == "third") or (d == "fourth") or (d == "fifth")  or (d == "sixth")  or (d == "seventh")  or (d == "eigth")  or (d == "ninth")  or (d == "tenth")  or (d == "max")):
