@@ -41,7 +41,7 @@ def write_log(message):
     f=open("log.txt","a")
     try:
         t=datetime.now()
-        f.write("Time of event: ",t," Message: ", message,"\n")
+        f.write("Time of event: ",str(t)," Message: ", message,"\n")
     finally:
         f.close()
 
@@ -98,7 +98,7 @@ while (time.time() - time_exit < 580):
                 if ((read_ble.data_decode == "on") or (read_ble.data_decode == "off") or (read_ble.data_decode == "error") or (read_ble.data_decode == "first") or (read_ble.data_decode == "second") or (read_ble.data_decode == "third") or (read_ble.data_decode == "fourth")or (read_ble.data_decode == "fifth") or (read_ble.data_decode == "sixth") or (read_ble.data_decode == "seventh") or (read_ble.data_decode == "eigth") or (read_ble.data_decode == "ninth") or (read_ble.data_decode == "tenth") or (read_ble.data_decode == "max")):
                     washer_state_array[i]=read_ble.data_decode
                     print(read_ble.data_decode+str(i))
-                    print(datetime.datetime.now())
+                    print(datetime.now())
                 else:
                     pass
             #upload = threading.Thread(target=stdhandle, args = (read_ble.data_decode,i), daemon = True)
