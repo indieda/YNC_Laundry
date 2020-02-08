@@ -1,3 +1,4 @@
+
 #! /usr/bin/python3
 from bluepy import btle
 from time import sleep
@@ -7,7 +8,8 @@ import time
 import threading
 import requests, os, sys, logging
 
-ync_url="https://fb63a24c.ngrok.io"
+test_url = "http://4695a1a5.ngrok.io/index"
+ync_url = "https://laundry.yale-nus.edu.sg/index"
 url = "https://enrixpn98m8gp.x.pipedream.net"
 #"https://webhook.site/d9cae541-78e7-48de-8791-79d8eccf84d7"
 #19th Jan https://webhook.site/#!/a03ad0ea-9a75-4928-bad7-e0cae58a3709/a5e58475-531e-4a0f-bc84-7bd0882c79ef/1
@@ -37,11 +39,16 @@ def read_ble(ble_no,i):
 global i
 i=0
 
+
+
 def write_log(message):
-    f=open("log.txt","a")
+    global f
+    f = open("/home/pi/Documents/log.txt","a")
     try:
-        t=datetime.now()
-        f.write("Time of event: ",str(t)," Message: ", message,"\n")
+        t = str(datetime.now())
+        write = f.write("Time of event: "+t+" Message: "+ message+"\n")
+    except:
+        pass
     finally:
         f.close()
 
@@ -55,15 +62,19 @@ def upload_to_web():
         for idx,d in enumerate(washer_state_array,0):
             if d == "on" :
             #idx = data_decoded[1]
-                response = requests.post(url , json = {'Washer 6':'On, not available to use'})
+                response = requests.post(url , json = {'Washer 6':'On, machine is not available for use'})
+                resp = requests.post(test_url , json = {'sensorValue':888,'college':'Cendana','machineLabel':'Washer_6'})
+                resp = requests.post(ync_url , json = {'sensorValue':888,'college':'Cendana','machineLabel':'Washer_6'})
                 #response2 = requests.post(ync_url , json = {'Washer 6':'On'})
                 write_log("Washer 6 On")
                 print('Washer {}'.format(idx), d ,"and Uploaded")
             elif d == "off" :
                 #idx = data_decoded[1]
-                response = requests.post(url, json = {'Washer 6':'Off, available to use'})
-                write_log("Washer 6 Off")
+                response = requests.post(url, json = {'Washer 6':'Off, machine is available for use'})
+                resp = requests.post(test_url , json = {'sensorValue':0,'college':'Cendana','machineLabel':'Washer_6'})
+                resp = requests.post(ync_url , json = {'sensorValue':0,'college':'Cendana','machineLabel':'Washer_6'})
                 #response2 = requests.post(ync_url , json = {'Washer 6':'Off'})
+                write_log("Washer 6 Off")
                 print('Washer {}'.format(idx), d ,"and Uploaded")
             elif d == "error" :
                 response = requests.post(url, json = {'Washer 6':'Error, the lock light is blinking!'})
@@ -95,7 +106,7 @@ while (time.time() - time_exit < 580):
         for addr_i in cendana_addr:
             try:
                 func_timeout(0.8,read_ble,args=(addr_i,i))
-                if ((read_ble.data_decode == "on") or (read_ble.data_decode == "off") or (read_ble.data_decode == "error") or (read_ble.data_decode == "first") or (read_ble.data_decode == "second") or (read_ble.data_decode == "third") or (read_ble.data_decode == "fourth")or (read_ble.data_decode == "fifth") or (read_ble.data_decode == "sixth") or (read_ble.data_decode == "seventh") or (read_ble.data_decode == "eigth") or (read_ble.data_decode == "ninth") or (read_ble.data_decode == "tenth") or (read_ble.data_decode == "max")):
+                if ((read_ble.data_decode == "on") or (read_ble.data_decode == "off") or (read_ble.data_decode == "error") or (read_ble.data_decode == "first") or (read_ble.data_decode == "second") or (read_ble.data_decode == "third") or (read_ble.data_decode == "fourth")or (read_ble.data_decode == "fifth") or (read_ble.data_decode == "six$
                     washer_state_array[i]=read_ble.data_decode
                     print(read_ble.data_decode+str(i))
                     print(datetime.now())
