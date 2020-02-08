@@ -112,7 +112,7 @@ while (time.time() - time_exit < 580):
         for addr_i in cendana_addr:
             try:
                 func_timeout(0.8,read_ble,args=(addr_i,i))
-                if ((read_ble.data_decode == "on") or (read_ble.data_decode == "off") or (read_ble.data_decode == "error") or (read_ble.data_decode == "first") or (read_ble.data_decode == "second") or (read_ble.data_decode == "third") or (read_ble.data_decode == "fourth")or (read_ble.data_decode == "fifth") or (read_ble.data_decode == "six$
+                if ((read_ble.data_decode == "on") or (read_ble.data_decode == "off") or (read_ble.data_decode == "error") or (read_ble.data_decode == "first") or (read_ble.data_decode == "second") or (read_ble.data_decode == "third") or (read_ble.data_decode == "fourth")or (read_ble.data_decode == "fifth") or (read_ble.data_decode == "sixth") or (read_ble.data_decode == "seventh") or (read_ble.data_decode == "eigth") or (read_ble.data_decode == "ninth") or (read_ble.data_decode == "tenth") or (read_ble.data_decode == "max")):
                     washer_state_array[i]=read_ble.data_decode
                     print(read_ble.data_decode+str(i))
                     print(datetime.now())
