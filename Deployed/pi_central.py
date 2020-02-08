@@ -64,8 +64,8 @@ def upload_to_web():
             #idx = data_decoded[1]
                 try:
                     response = requests.post(url , json = {'Washer 6':'On, machine is not available for use'})
-                    resp = requests.post(test_url , json = {'sensorValue':888,'college':'Cendana','machineLabel':'Washer_6'})
-                    resp2 = requests.post(ync_url , json = {'sensorValue':888,'college':'Cendana','machineLabel':'Washer_6'})
+                    resp = requests.post(test_url , json = {'sensorValue':188,'college':'Cendana','machineLabel':'Washer_6'})
+                    resp2 = requests.post(ync_url , json = {'sensorValue':188,'college':'Cendana','machineLabel':'Washer_6'})
                 #response2 = requests.post(ync_url , json = {'Washer 6':'On'})
                 except:
                     pass
@@ -75,8 +75,8 @@ def upload_to_web():
                 #idx = data_decoded[1]
                 try:
                     response = requests.post(url, json = {'Washer 6':'Off, machine is available for use'})
-                    resp = requests.post(test_url , json = {'sensorValue':0,'college':'Cendana','machineLabel':'Washer_6'})
-                    resp2 = requests.post(ync_url , json = {'sensorValue':0,'college':'Cendana','machineLabel':'Washer_6'})
+                    resp = requests.post(test_url , json = {'sensorValue':888,'college':'Cendana','machineLabel':'Washer_6'})
+                    resp2 = requests.post(ync_url , json = {'sensorValue':888,'college':'Cendana','machineLabel':'Washer_6'})
                 #response2 = requests.post(ync_url , json = {'Washer 6':'Off'})
                 except:
                     pass
