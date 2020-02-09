@@ -63,20 +63,20 @@ def upload_to_web():
             if d == "on" :
             #idx = data_decoded[1]
                 try:
-                    response = requests.post(url , json = {'Washer 6':'On, machine is not available for use'})
-                    resp = requests.post(test_url , json = {'sensorValue':188,'college':'Cendana','machineLabel':'Washer_6'})
-                    resp2 = requests.post(ync_url , json = {'sensorValue':188,'college':'Cendana','machineLabel':'Washer_6'})
-                #response2 = requests.post(ync_url , json = {'Washer 6':'On'})
+                    response = requests.post(url , json = {"Washer 6":"On, machine is not available for use"})
+                    resp = requests.post(test_url , json = {"sensorValue":188,"college":"Cendana","machineLabel":"Washer_6"})
+                    resp2 = requests.post(ync_url , json = {"sensorValue":188,"college":"Cendana","machineLabel":"Washer_6"})
+                #response2 = requests.post(ync_url , json = {"Washer 6":"On"})
                 except:
                     pass
                 write_log("Washer 6 On")
-                print('Washer {}'.format(idx), d ,"and Uploaded")
+                print("Washer {}".format(idx), d ,"and Uploaded")
             elif d == "off" :
                 #idx = data_decoded[1]
                 try:
-                    response = requests.post(url, json = {'Washer 6':'Off, machine is available for use'})
-                    resp = requests.post(test_url , json = {'sensorValue':888,'college':'Cendana','machineLabel':'Washer_6'})
-                    resp2 = requests.post(ync_url , json = {'sensorValue':888,'college':'Cendana','machineLabel':'Washer_6'})
+                    response = requests.post(url, json = {"Washer 6":"Off, machine is available for use"})
+                    resp = requests.post(test_url , json = {"sensorValue":888,"college":"Cendana","machineLabel":"Washer_6"})
+                    resp2 = requests.post(ync_url , json = {"sensorValue":888,"college":"Cendana","machineLabel":"Washer_6"})
                 #response2 = requests.post(ync_url , json = {'Washer 6':'Off'})
                 except:
                     pass
