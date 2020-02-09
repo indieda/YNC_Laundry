@@ -8,7 +8,7 @@ import time
 import threading
 import requests, os, sys, logging
 
-test_url = "http://d85096dc.ngrok.io/index"
+test_url = "http://82cf705b.ngrok.io/index"
 ync_url = "https://laundry.yale-nus.edu.sg/index"
 url = "https://enrixpn98m8gp.x.pipedream.net"
 #"https://webhook.site/d9cae541-78e7-48de-8791-79d8eccf84d7"
