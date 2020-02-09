@@ -20,7 +20,6 @@ cendana_addr = ['ec:24:b8:23:78:29','58:7A:62:17:B8:07']
 washer_addr_reversed = [6,5,4,3,2,1]
 washer_state_array = ["nil","nil"]
 college = "Cendana"
-
 time_prev = time.time()
 time_exit = time.time()
 time_elapsed = time.time() - time_prev
@@ -113,12 +112,12 @@ print("Starting infinite loop")
 uptime_log = open(uptime_log_path,"a")
 try:
     t = str(datetime.now())
-            time_elapsed = time.time() - time_prev
     write = uptime_log.write(t, " on"+"\n")
 except:
     pass
 finally:
     uptime_log.close()
+
 while (time.time() - time_exit < 585):
     i=0
     try:
@@ -138,7 +137,7 @@ while (time.time() - time_exit < 585):
             except FunctionTimedOut as e:
                 #print(e)
                 pass
-
+            time_elapsed = time.time() - time_prev
             #if kill[i] > 30:
                 #kill = [0,0]
                 #print("restarting program")
