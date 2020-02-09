@@ -9,6 +9,7 @@ import threading
 import requests, os, sys, logging
 from pathlib import Path
 
+log_path = str(Path.cwd()/"log.txt")
 uptime_log_path = str(Path.cwd()/"uptime.txt")
 test_url = "http://cf203277.ngrok.io/index"
 ync_url = "https://laundry.yale-nus.edu.sg/index"
@@ -42,11 +43,9 @@ def read_ble(ble_no,i):
 global i
 i=0
 
-
-
 def write_log(message):
     global f
-    f = open("/home/pi/YNC_Laundry/Deployed/log.txt","a")
+    f = open(log_path,"a")
     try:
         t = str(datetime.now())
         write = f.write("Time of event: "+t+" Message: "+ message+"\n")
@@ -73,7 +72,7 @@ def upload_to_web():
                 #response2 = requests.post(ync_url , json = {"Washer 6":"On"})
                 except:
                     pass
-                write_log("Washer 6 On")
+                write_log("Washer {} On".format(washer_addr_reversed[idx]))
                 print("Washer {}".format(idx), d ,"and Uploaded")
             elif d[1] == "f" :
                 #idx = data_decoded[1]
@@ -84,12 +83,12 @@ def upload_to_web():
                 #response2 = requests.post(ync_url , json = {'Washer 6':'Off'})
                 except:
                     pass
-                write_log("Washer 6 Off")
+                write_log("Washer {} Off".format(washer_addr_reversed[idx]))
                 print('Washer {}'.format(idx), d ,"and Uploaded")
-            elif d == "error" :
+            elif d[1] == "r" :
                 response = requests.post(url, json = {'Washer 6':'Error, the lock light is blinking!'})
                 #response2 = requests.post(ync_url , json = {'Washer 6':'Error'})
-                write_log("Washer 6 Error")
+                write_log("Washer {} Error".format(washer_addr_reversed[idx]))
                 print('Washer {}'.format(idx), d ,"and Uploaded")
             elif ((d == "first") or (d == "second") or (d == "third") or (d == "fourth") or (d == "fifth")  or (d == "sixth")  or (d == "seventh")  or (d == "eigth")  or (d == "ninth")  or (d == "tenth")  or (d == "max")):
                 response = requests.post(url,json={"Washer {} ble message: {}".format(idx,d):"Lightval"})
