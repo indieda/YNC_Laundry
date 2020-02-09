@@ -314,3 +314,13 @@ Time of event: 2020-02-09 21:34:44.913963 Message: Washer 6 On
 Time of event: 2020-02-09 21:45:50.304044 Message: Washer 6 Off
 Time of event: 2020-02-09 21:46:52.706575 Message: Washer 6 Off
 Time of event: 2020-02-09 21:48:04.149053 Message: Washer 6 Off
+Time of event: 2020-02-09 22:34:39.638277 Message: Washer 6 Error
+Time of event: 2020-02-09 22:35:38.479261 Message: Washer 6 Off
+Time of event: 2020-02-09 22:36:15.629582 Message: Washer 6 Off
+Time of event: 2020-02-09 22:37:59.279161 Message: Washer 6 Off
+Time of event: 2020-02-09 22:45:07.657969 Message: Washer 6 On
+Time of event: 2020-02-09 22:46:24.879154 Message: Washer 6 On
+Time of event: 2020-02-09 22:47:15.439125 Message: Washer 6 On
+Time of event: 2020-02-09 23:29:45.812163 Message: Washer 6 Off
+Time of event: 2020-02-09 23:30:55.945421 Message: Washer 6 Off
+Time of event: 2020-02-09 23:32:37.359164 Message: Washer 6 Off
