@@ -30,6 +30,7 @@ def read_ble(ble_no,i):
         conn = btle.Peripheral(ble_no)
         data = conn.readCharacteristic(0x0025)
     #print(data.decode('utf8')+str(i))
+        read_ble.data_decode = data.decode('utf8')
         conn.disconnect()
         #read_ble.data_decode = data_decode
     except Exception as e:
@@ -113,9 +114,9 @@ try:
     uptime_log = open(uptime_log_path,"a")
     t = str(datetime.now())
     write = uptime_log.write(t+ " on"+"\n")
+    print("Wrote to log")
 except:
-        read_ble.data_decode = data.decode('utf8')
-    pass
+    print("exception in write to log")
 finally:
     uptime_log.close()
 
