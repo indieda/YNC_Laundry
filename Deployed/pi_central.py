@@ -1,4 +1,4 @@
-#! /usr/bin/python3
+\#! /usr/bin/python3
 from bluepy import btle
 from time import sleep
 from func_timeout import func_timeout, FunctionTimedOut
@@ -61,7 +61,7 @@ def upload_to_web():
         global washer_state_array
         print(washer_state_array)
         for idx,d in enumerate(washer_state_array,0):
-            if d == "on" :
+            if d[1] == "n" :
             #idx = data_decoded[1]
                 try:
                     response = requests.post(url , json = {"Washer {}".format(washer_addr_reversed[idx]):"On, machine is not available for use"})
@@ -72,7 +72,7 @@ def upload_to_web():
                     pass
                 write_log("Washer 6 On")
                 print("Washer {}".format(idx), d ,"and Uploaded")
-            elif d == "off" :
+            elif d[1] == "f" :
                 #idx = data_decoded[1]
                 try:
                     response = requests.post(url, json = {"Washer {}".format(washer_addr_reversed[idx]):"Off, machine is available for use"})
@@ -107,13 +107,13 @@ time.sleep(2.0)
 print("Restarted bluetooth")
 print("Starting infinite loop")
 
-while (time.time() - time_exit < 572):
+while (time.time() - time_exit < 592):
     i=0
     try:
         for addr_i in cendana_addr:
             try:
                 func_timeout(0.8,read_ble,args=(addr_i,i))
-                if ((read_ble.data_decode == "on") or (read_ble.data_decode == "off") or (read_ble.data_decode == "error") or (read_ble.data_decode == "first") or (read_ble.data_decode == "second") or (read_ble.data_decode == "third") or (read_ble.data_decode == "fourth")or (read_ble.data_decode == "fifth") or (read_ble.data_decode == "sixth") or (read_ble.data_decode == "seventh") or (read_ble.data_decode == "eigth") or (read_ble.data_decode == "ninth") or (read_ble.data_decode == "tenth") or (read_ble.data_decode == "max")):
+                if ((read_ble.data_decode[1] == "n") or (read_ble.data_decode[1] == "f") or (read_ble.data_decode[1] == "r") or (read_ble.data_decode == "first") or (read_ble.data_decode == "second") or (read_ble.data_decode == "third") or (read_ble.data_decode == "fourth")or (read_ble.data_decode == "fifth") or (read_ble.data_decode == "sixth") or (read_ble.data_decode == "seventh") or (read_ble.data_decode == "eigth") or (read_ble.data_decode == "ninth") or (read_ble.data_decode == "tenth") or (read_ble.data_decode == "max")):
                     washer_state_array[i]=read_ble.data_decode
                     print(read_ble.data_decode+str(i))
                     print(datetime.now())

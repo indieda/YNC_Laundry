@@ -42,7 +42,7 @@ def send_email(ip_to_send):
     print ("Our email has been sent!")
 
 # Open up previous IP address (last_ip.txt) and extract contents
-with open('/home/pi/Documents/last_ip.txt', 'rt') as last_ip:
+with open('/home/pi/YNC_Laundry/Deployed/last_ip.txt', 'rt') as last_ip:
     last_ip = last_ip.read() # Read the text file
 
 # Check to see if our IP address has really changed
@@ -50,7 +50,7 @@ if last_ip == ourIP: #this will always send out. Deliberately not made it last_i
     print("Our IP address has not changed.")
 else:
     print ("We have a new IP address.")
-    with open('/home/pi/Documents/last_ip.txt', 'wt') as last_ip:
+    with open('/home/pi/YNC_Laundry/Deployed/last_ip.txt', 'wt') as last_ip:
         last_ip.write(ip_to_send)
         last_ip.close()
     print ("We have written the new IP address to the text file.")
