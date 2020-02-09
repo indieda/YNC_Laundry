@@ -107,7 +107,7 @@ time.sleep(2.0)
 print("Restarted bluetooth")
 print("Starting infinite loop")
 
-while (time.time() - time_exit < 592):
+while (time.time() - time_exit < 575):
     i=0
     try:
         for addr_i in cendana_addr:

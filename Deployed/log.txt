@@ -312,3 +312,5 @@ Time of event: 2020-02-09 21:33:15.124778 Message: Washer 6 On
 Time of event: 2020-02-09 21:34:00.102022 Message: Washer 6 On
 Time of event: 2020-02-09 21:34:44.913963 Message: Washer 6 On
 Time of event: 2020-02-09 21:45:50.304044 Message: Washer 6 Off
+Time of event: 2020-02-09 21:46:52.706575 Message: Washer 6 Off
+Time of event: 2020-02-09 21:48:04.149053 Message: Washer 6 Off
