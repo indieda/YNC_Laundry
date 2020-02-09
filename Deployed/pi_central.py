@@ -106,7 +106,7 @@ os.system("rfkill unblock bluetooth")
 time.sleep(2.0)
 print("Restarted bluetooth")
 print("Starting infinite loop")
-
+#575 is a good time, and more than that and it tends to not start.
 while (time.time() - time_exit < 575):
     i=0
     try:
