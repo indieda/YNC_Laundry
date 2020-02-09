@@ -1,4 +1,3 @@
-
 #! /usr/bin/python3
 from bluepy import btle
 from time import sleep
@@ -8,7 +7,7 @@ import time
 import threading
 import requests, os, sys, logging
 
-test_url = "http://6727cffd.ngrok.io/index"
+test_url = "http://cf203277.ngrok.io/index"
 ync_url = "https://laundry.yale-nus.edu.sg/index"
 url = "https://enrixpn98m8gp.x.pipedream.net"
 #"https://webhook.site/d9cae541-78e7-48de-8791-79d8eccf84d7"
@@ -45,7 +44,7 @@ i=0
 
 def write_log(message):
     global f
-    f = open("/home/pi/Documents/log.txt","a")
+    f = open("/home/pi/YNC_Laundry/Deployed/log.txt","a")
     try:
         t = str(datetime.now())
         write = f.write("Time of event: "+t+" Message: "+ message+"\n")
@@ -108,7 +107,7 @@ time.sleep(2.0)
 print("Restarted bluetooth")
 print("Starting infinite loop")
 
-while (time.time() - time_exit < 580):
+while (time.time() - time_exit < 572):
     i=0
     try:
         for addr_i in cendana_addr:
