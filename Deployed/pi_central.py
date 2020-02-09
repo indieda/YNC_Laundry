@@ -7,13 +7,14 @@ from datetime import datetime
 import time
 import threading
 import requests, os, sys, logging
+from pathlib import Path
 
+uptime_log_path = str(Path.cwd()/"uptime.txt")
 test_url = "http://cf203277.ngrok.io/index"
 ync_url = "https://laundry.yale-nus.edu.sg/index"
 url = "https://enrixpn98m8gp.x.pipedream.net"
 #"https://webhook.site/d9cae541-78e7-48de-8791-79d8eccf84d7"
 #19th Jan https://webhook.site/#!/a03ad0ea-9a75-4928-bad7-e0cae58a3709/a5e58475-531e-4a0f-bc84-7bd0882c79ef/1
-#20th Jan https://webhook.site/#!/d9cae541-78e7-48de-8791-79d8eccf84d7/7ed9cfff-c943-4f45-9166-1f33090c9fb1/1
 cendana_addr = ['ec:24:b8:23:78:29','58:7A:62:17:B8:07']
 #ec:24 is washer 6.
 washer_addr_reversed = [6,5,4,3,2,1]
@@ -65,6 +66,8 @@ def upload_to_web():
             if d[1] == "n" :
             #idx = data_decoded[1]
                 try:
+                #response = requests.post(url,json={"Washer {} ble message: {}".format(idx,d):"Couldn't read..."})
+#20th Jan https://webhook.site/#!/d9cae541-78e7-48de-8791-79d8eccf84d7/7ed9cfff-c943-4f45-9166-1f33090c9fb1/1
                     response = requests.post(url , json = {"Washer {}".format(washer_addr_reversed[idx]):"On, machine is not available for use"})
                     resp = requests.post(test_url , json = {"sensorValue":188,"college":"Cendana","machineLabel":"Washer_{}".format(washer_addr_reversed[idx])})
                     resp2 = requests.post(ync_url , json = {"sensorValue":188,"college":"Cendana","machineLabel":"Washer_{}".format(washer_addr_reversed[idx])})
@@ -92,7 +95,6 @@ def upload_to_web():
             elif ((d == "first") or (d == "second") or (d == "third") or (d == "fourth") or (d == "fifth")  or (d == "sixth")  or (d == "seventh")  or (d == "eigth")  or (d == "ninth")  or (d == "tenth")  or (d == "max")):
                 response = requests.post(url,json={"Washer {} ble message: {}".format(idx,d):"Lightval"})
             else:
-                #response = requests.post(url,json={"Washer {} ble message: {}".format(idx,d):"Couldn't read..."})
                 #kill[idx-1] = kill[idx-1] + 1
                 pass
             washer_state_array[idx-1] = "nil"
@@ -108,6 +110,15 @@ time.sleep(2.0)
 print("Restarted bluetooth")
 print("Starting infinite loop")
 #575 is a good time, and more than that and it tends to not start.
+uptime_log = open(uptime_log_path,"a")
+try:
+    t = str(datetime.now())
+            time_elapsed = time.time() - time_prev
+    write = uptime_log.write(t, " on"+"\n")
+except:
+    pass
+finally:
+    uptime_log.close()
 while (time.time() - time_exit < 585):
     i=0
     try:
@@ -127,7 +138,6 @@ while (time.time() - time_exit < 585):
             except FunctionTimedOut as e:
                 #print(e)
                 pass
-            time_elapsed = time.time() - time_prev
 
             #if kill[i] > 30:
                 #kill = [0,0]
@@ -142,6 +152,15 @@ while (time.time() - time_exit < 585):
     except Exception as e:
         #print(e)
         pass
+
+uptime_log = open(uptime_log_path,"a")
+try:
+    t = str(datetime.now())
+    write = uptime_log.write(t, " off"+"\n")
+except:
+    pass
+finally:
+    uptime_log.close()
 
 exit()
 
