@@ -1,4 +1,5 @@
-\#! /usr/bin/python3
+#! /usr/bin/python3
+
 from bluepy import btle
 from time import sleep
 from func_timeout import func_timeout, FunctionTimedOut
@@ -6,7 +7,7 @@ from datetime import datetime
 import time
 import threading
 import requests, os, sys, logging
-#
+
 test_url = "http://cf203277.ngrok.io/index"
 ync_url = "https://laundry.yale-nus.edu.sg/index"
 url = "https://enrixpn98m8gp.x.pipedream.net"
@@ -107,7 +108,7 @@ time.sleep(2.0)
 print("Restarted bluetooth")
 print("Starting infinite loop")
 #575 is a good time, and more than that and it tends to not start.
-while (time.time() - time_exit < 575):
+while (time.time() - time_exit < 585):
     i=0
     try:
         for addr_i in cendana_addr:
