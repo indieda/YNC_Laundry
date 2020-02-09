@@ -29,7 +29,6 @@ def read_ble(ble_no,i):
     try:
         conn = btle.Peripheral(ble_no)
         data = conn.readCharacteristic(0x0025)
-        read_ble.data_decode = data.decode('utf8')
     #print(data.decode('utf8')+str(i))
         conn.disconnect()
         #read_ble.data_decode = data_decode
@@ -109,11 +108,13 @@ time.sleep(2.0)
 print("Restarted bluetooth")
 print("Starting infinite loop")
 #575 is a good time, and more than that and it tends to not start.
-uptime_log = open(uptime_log_path,"a")
+
 try:
+    uptime_log = open(uptime_log_path,"a")
     t = str(datetime.now())
-    write = uptime_log.write(t, " on"+"\n")
+    write = uptime_log.write(t+ " on"+"\n")
 except:
+        read_ble.data_decode = data.decode('utf8')
     pass
 finally:
     uptime_log.close()
@@ -152,10 +153,11 @@ while (time.time() - time_exit < 585):
         #print(e)
         pass
 
-uptime_log = open(uptime_log_path,"a")
+
 try:
+    uptime_log = open(uptime_log_path,"a")
     t = str(datetime.now())
-    write = uptime_log.write(t, " off"+"\n")
+    write = uptime_log.write(t+ " off"+"\n")
 except:
     pass
 finally:
