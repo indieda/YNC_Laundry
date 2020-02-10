@@ -9,8 +9,10 @@ import threading
 import requests, os, sys, logging
 from pathlib import Path
 
-log_path = str(Path.cwd()/"log.txt")
-uptime_log_path = str(Path.cwd()/"uptime.txt")
+log_path = "/home/pi/YNC_Laundry/Deployed/log.txt"
+#log_path = str(Path.cwd()/"log.txt")
+uptime_log_path = "/home/pi/YNC_Laundry/Deployed/uptime.txt"
+#uptime_log_path = str(Path.cwd()/"uptime.txt")
 test_url = "http://cf203277.ngrok.io/index"
 ync_url = "https://laundry.yale-nus.edu.sg/index"
 url = "https://enrixpn98m8gp.x.pipedream.net"
