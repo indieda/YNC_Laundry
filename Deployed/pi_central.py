@@ -29,6 +29,13 @@ time_exit = time.time()
 time_elapsed = time.time() - time_prev
 #kill = [0,0]
 
+def telegram_bot(msg):
+    bot_token="1081925199:AAFSR2A4rcls3eTUrNPwI1JgCHWTBQtUgFo"
+    bot_chatID="63735059"
+    send_msg = 'https://api.telegram.org/bot' + bot_token + '/sendMessage?chat_id=' + bot_chatID + '&parse_mode=Markdown&text=' + msg
+    rs = requests.get(send_msg)
+    return rs.json()
+
 def read_ble(ble_no,i):
     try:
         conn = btle.Peripheral(ble_no)
@@ -44,7 +51,7 @@ def read_ble(ble_no,i):
 
 global i
 i=0
-
+l="a"
 def write_log(message):
     global f
     f = open(log_path,"a")
@@ -71,6 +78,13 @@ def upload_to_web():
                     response = requests.post(url , json = {"Washer {}".format(washer_addr_reversed[idx]):"On, machine is not available for use"})
                     resp = requests.post(test_url , json = {"sensorValue":188,"college":"Cendana","machineLabel":"Washer_{}".format(washer_addr_reversed[idx])})
                     resp2 = requests.post(ync_url , json = {"sensorValue":188,"college":"Cendana","machineLabel":"Washer_{}".format(washer_addr_reversed[idx])})
+                    if l != "n":
+                        try:
+                            telegram_bot(d)
+                        except:
+                            pass
+                    else:
+                    l="n"
                 #response2 = requests.post(ync_url , json = {"Washer 6":"On"})
                 except:
                     pass
@@ -83,6 +97,13 @@ def upload_to_web():
                     resp = requests.post(test_url , json = {"sensorValue":888,"college":"Cendana","machineLabel":"Washer_{}".format(washer_addr_reversed[idx])})
                     resp2 = requests.post(ync_url , json = {"sensorValue":888,"college":"Cendana","machineLabel":"Washer_{}".format(washer_addr_reversed[idx])})
                 #response2 = requests.post(ync_url , json = {'Washer 6':'Off'})
+                    if l != "f":
+                        try:
+                            telegram_bot(d)
+                        except:
+                            pass
+                    else:
+                    l="f"
                 except:
                     pass
                 write_log("Washer {} Off".format(washer_addr_reversed[idx]))
@@ -92,6 +113,13 @@ def upload_to_web():
                 #response2 = requests.post(ync_url , json = {'Washer 6':'Error'})
                 write_log("Washer {} Error".format(washer_addr_reversed[idx]))
                 print('Washer {}'.format(idx), d ,"and Uploaded")
+                if l != "f":
+                    try:
+                        telegram_bot(d)
+                    except:
+                        pass
+                else:
+                l="f"
             elif ((d == "first") or (d == "second") or (d == "third") or (d == "fourth") or (d == "fifth")  or (d == "sixth")  or (d == "seventh")  or (d == "eigth")  or (d == "ninth")  or (d == "tenth")  or (d == "max")):
                 response = requests.post(url,json={"Washer {} ble message: {}".format(idx,d):"Lightval"})
             else:
@@ -160,6 +188,10 @@ try:
     uptime_log = open(uptime_log_path,"a")
     t = str(datetime.now())
     write = uptime_log.write(t+ " off"+"\n")
+    try:
+        telegram_bot("turning python script off")
+    except:
+        pass
 except:
     pass
 finally:
