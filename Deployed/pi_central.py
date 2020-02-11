@@ -54,8 +54,8 @@ def read_ble(ble_no,i):
         pass
 
 global i
-i=0
-l="a"
+i = 0
+l = "a"
 def write_log(message):
     global f
     f = open(log_path,"a")
