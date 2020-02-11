@@ -30,6 +30,7 @@ time_elapsed = time.time() - time_prev
 #kill = [0,0]
 global i
 i = 0
+global l
 l = "a"
 
 def telegram_bot(msg):
