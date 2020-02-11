@@ -121,6 +121,7 @@ def upload_to_web():
                     except:
                         pass
                 else:
+                    pass
                 l="f"
             elif ((d == "first") or (d == "second") or (d == "third") or (d == "fourth") or (d == "fifth")  or (d == "sixth")  or (d == "seventh")  or (d == "eigth")  or (d == "ninth")  or (d == "tenth")  or (d == "max")):
                 response = requests.post(url,json={"Washer {} ble message: {}".format(idx,d):"Lightval"})
