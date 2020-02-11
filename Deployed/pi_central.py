@@ -84,7 +84,7 @@ def upload_to_web():
                     resp2 = requests.post(ync_url , json = {"sensorValue":188,"college":"Cendana","machineLabel":"Washer_{}".format(washer_addr_reversed[idx])})
                     if l != "n":
                         try:
-                            telegram_bot(d)
+                            telegram_bot("Washer {} ".format(washer_addr_reversed[idx]) + str(d))
                         except:
                             pass
                     else:
@@ -104,7 +104,7 @@ def upload_to_web():
                 #response2 = requests.post(ync_url , json = {'Washer 6':'Off'})
                     if l != "f":
                         try:
-                            telegram_bot(d)
+                            telegram_bot("Washer {} ".format(washer_addr_reversed[idx])+str(d))
                         except:
                             pass
                     else:
@@ -121,7 +121,7 @@ def upload_to_web():
                 print('Washer {}'.format(idx), d ,"and Uploaded")
                 if l != "f":
                     try:
-                        telegram_bot(d)
+                        telegram_bot("Washer {} ".format(washer_addr_reversed[idx])+str(d))
                     except:
                         pass
                 else:
