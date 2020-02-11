@@ -147,15 +147,15 @@ finally:
 
 #telegram bot code
 
-z="test on"
-if l == "a":
-    try:
-        tele = telegram_bot("Washer {} ".format(washer_addr_reversed[0])+str(z))
-    except Exception as e:
-        print(e)
-        pass
-else:
-    pass
+#z="test on"
+#if l == "a":
+#    try:
+#        tele = telegram_bot("Washer {} ".format(washer_addr_reversed[0])+str(z))
+#    except Exception as e:
+#        print(e)
+#        pass
+#else:
+#    pass
 
 #try:
 #    telegram_bot("turning python script on - a")
