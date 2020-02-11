@@ -28,6 +28,9 @@ time_prev = time.time()
 time_exit = time.time()
 time_elapsed = time.time() - time_prev
 #kill = [0,0]
+global i
+i = 0
+l = "a"
 
 def telegram_bot(msg):
     bot_token="1081925199:AAFSR2A4rcls3eTUrNPwI1JgCHWTBQtUgFo"
@@ -53,9 +56,6 @@ def read_ble(ble_no,i):
         read_ble.data_decode = "nil"
         pass
 
-global i
-i = 0
-l = "a"
 def write_log(message):
     global f
     f = open(log_path,"a")
@@ -68,6 +68,7 @@ def write_log(message):
         f.close()
 
 def upload_to_web():
+    global l
     try:
         #t = threading.Timer(180.0,upload_to_web)
         #t.daemon = True
@@ -78,21 +79,21 @@ def upload_to_web():
             if d[1] == "n" :
             #idx = data_decoded[1]
                 try:
-                #response = requests.post(url,json={"Washer {} ble message: {}".format(idx,d):"Couldn't read..."})
+                    #response = requests.post(url,json={"Washer {} ble message: {}".format(idx,d):"Couldn't read..."})
                     response = requests.post(url , json = {"Washer {}".format(washer_addr_reversed[idx]):"On, machine is not available for use"})
                     resp = requests.post(test_url , json = {"sensorValue":188,"college":"Cendana","machineLabel":"Washer_{}".format(washer_addr_reversed[idx])})
                     #resp2 = requests.post(ync_url , json = {"sensorValue":188,"college":"Cendana","machineLabel":"Washer_{}".format(washer_addr_reversed[idx])})
-                    if l == "n":
+                    if l != "n":
                         tele = telegram_bot("Washer {} ".format(washer_addr_reversed[idx]) + d)
                     else:
                         pass
                     l = "n"
-                #response2 = requests.post(ync_url , json = {"Washer 6":"On"})
+                    #response2 = requests.post(ync_url , json = {"Washer 6":"On"})
                 except:
                     pass
                 write_log("Washer {} On".format(washer_addr_reversed[idx]))
                 print("Washer {}".format(idx), d ,"and Uploaded")
-            elif d[1] == "f" :
+            elif d[1] != "f" :
                 #idx = data_decoded[1]
                 try:
                     response = requests.post(url, json = {"Washer {}".format(washer_addr_reversed[idx]):"Off, machine is available for use"})
@@ -100,10 +101,7 @@ def upload_to_web():
                     #resp2 = requests.post(ync_url , json = {"sensorValue":888,"college":"Cendana","machineLabel":"Washer_{}".format(washer_addr_reversed[idx])})
                     #response2 = requests.post(ync_url , json = {'Washer 6':'Off'})
                     if l == "f":
-                        try:
-                            tele = telegram_bot("Washer {} ".format(washer_addr_reversed[idx]) + d)
-                        except:
-                            pass
+                        tele = telegram_bot("Washer {} ".format(washer_addr_reversed[idx]) + d)
                     else:
                         pass
                     l = "f"
