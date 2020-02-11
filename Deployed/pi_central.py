@@ -78,7 +78,6 @@ def upload_to_web():
         for idx,d in enumerate(washer_state_array,0):
             if d[1] == "n" :
             #idx = data_decoded[1]
-                try:
                 #response = requests.post(url,json={"Washer {} ble message: {}".format(idx,d):"Couldn't read..."})
                 response = requests.post(url , json = {"Washer {}".format(washer_addr_reversed[idx]):"On, machine is not available for use"})
                 resp = requests.post(test_url , json = {"sensorValue":188,"college":"Cendana","machineLabel":"Washer_{}".format(washer_addr_reversed[idx])})
@@ -97,7 +96,7 @@ def upload_to_web():
                 resp = requests.post(test_url , json = {"sensorValue":888,"college":"Cendana","machineLabel":"Washer_{}".format(washer_addr_reversed[idx])})
                 #resp2 = requests.post(ync_url , json = {"sensorValue":888,"college":"Cendana","machineLabel":"Washer_{}".format(washer_addr_reversed[idx])})
                 #response2 = requests.post(ync_url , json = {'Washer 6':'Off'})
-                if l == "f":
+                if l != "f":
                     tele = telegram_bot("Washer {} ".format(washer_addr_reversed[idx]) + d)
                 else:
                     pass
