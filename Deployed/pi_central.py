@@ -83,10 +83,7 @@ def upload_to_web():
                     resp = requests.post(test_url , json = {"sensorValue":188,"college":"Cendana","machineLabel":"Washer_{}".format(washer_addr_reversed[idx])})
                     #resp2 = requests.post(ync_url , json = {"sensorValue":188,"college":"Cendana","machineLabel":"Washer_{}".format(washer_addr_reversed[idx])})
                     if l == "n":
-                        try:
-                            tele = telegram_bot("Washer {} ".format(washer_addr_reversed[idx]) + d)
-                        except:
-                            pass
+                        tele = telegram_bot("Washer {} ".format(washer_addr_reversed[idx]) + d)
                     else:
                         pass
                     l = "n"
@@ -162,7 +159,7 @@ finally:
 z="test on"
 if l == "a":
     try:
-        tele = telegram_bot("Washer {} ".format(washer_addr_reversed[idx]) + z)
+        tele = telegram_bot("Washer {} ".format(washer_addr_reversed[0]) + z)
     except Exception as e:
         print(e)
         pass
