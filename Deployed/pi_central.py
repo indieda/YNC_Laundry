@@ -79,34 +79,29 @@ def upload_to_web():
             if d[1] == "n" :
             #idx = data_decoded[1]
                 try:
-                    #response = requests.post(url,json={"Washer {} ble message: {}".format(idx,d):"Couldn't read..."})
-                    response = requests.post(url , json = {"Washer {}".format(washer_addr_reversed[idx]):"On, machine is not available for use"})
-                    resp = requests.post(test_url , json = {"sensorValue":188,"college":"Cendana","machineLabel":"Washer_{}".format(washer_addr_reversed[idx])})
-                    #resp2 = requests.post(ync_url , json = {"sensorValue":188,"college":"Cendana","machineLabel":"Washer_{}".format(washer_addr_reversed[idx])})
-                    if l != "n":
-                        tele = telegram_bot("Washer {} ".format(washer_addr_reversed[idx]) + d)
-                    else:
-                        pass
-                    l = "n"
-                    #response2 = requests.post(ync_url , json = {"Washer 6":"On"})
-                except:
+                #response = requests.post(url,json={"Washer {} ble message: {}".format(idx,d):"Couldn't read..."})
+                response = requests.post(url , json = {"Washer {}".format(washer_addr_reversed[idx]):"On, machine is not available for use"})
+                resp = requests.post(test_url , json = {"sensorValue":188,"college":"Cendana","machineLabel":"Washer_{}".format(washer_addr_reversed[idx])})
+                #resp2 = requests.post(ync_url , json = {"sensorValue":188,"college":"Cendana","machineLabel":"Washer_{}".format(washer_addr_reversed[idx])})
+                if l != "n":
+                    tele = telegram_bot("Washer {} ".format(washer_addr_reversed[idx]) + d)
+                else:
                     pass
+                l = "n"
+                #response2 = requests.post(ync_url , json = {"Washer 6":"On"})
                 write_log("Washer {} On".format(washer_addr_reversed[idx]))
                 print("Washer {}".format(idx), d ,"and Uploaded")
-            elif d[1] != "f" :
+            elif d[1] == "f" :
                 #idx = data_decoded[1]
-                try:
-                    response = requests.post(url, json = {"Washer {}".format(washer_addr_reversed[idx]):"Off, machine is available for use"})
-                    resp = requests.post(test_url , json = {"sensorValue":888,"college":"Cendana","machineLabel":"Washer_{}".format(washer_addr_reversed[idx])})
-                    #resp2 = requests.post(ync_url , json = {"sensorValue":888,"college":"Cendana","machineLabel":"Washer_{}".format(washer_addr_reversed[idx])})
-                    #response2 = requests.post(ync_url , json = {'Washer 6':'Off'})
-                    if l == "f":
-                        tele = telegram_bot("Washer {} ".format(washer_addr_reversed[idx]) + d)
-                    else:
-                        pass
-                    l = "f"
-                except:
+                response = requests.post(url, json = {"Washer {}".format(washer_addr_reversed[idx]):"Off, machine is available for use"})
+                resp = requests.post(test_url , json = {"sensorValue":888,"college":"Cendana","machineLabel":"Washer_{}".format(washer_addr_reversed[idx])})
+                #resp2 = requests.post(ync_url , json = {"sensorValue":888,"college":"Cendana","machineLabel":"Washer_{}".format(washer_addr_reversed[idx])})
+                #response2 = requests.post(ync_url , json = {'Washer 6':'Off'})
+                if l == "f":
+                    tele = telegram_bot("Washer {} ".format(washer_addr_reversed[idx]) + d)
+                else:
                     pass
+                l = "f"
                 write_log("Washer {} Off".format(washer_addr_reversed[idx]))
                 print('Washer {}'.format(idx), d ,"and Uploaded")
             elif d[1] == "r" :
@@ -115,10 +110,7 @@ def upload_to_web():
                 write_log("Washer {} Error".format(washer_addr_reversed[idx]))
                 print('Washer {}'.format(idx), d ,"and Uploaded")
                 if l == "r":
-                    try:
-                        tele = telegram_bot("Washer {} ".format(washer_addr_reversed[idx]) +str(d))
-                    except:
-                        pass
+                    tele = telegram_bot("Washer {} ".format(washer_addr_reversed[idx]) +str(d))
                 else:
                     pass
                 l = "r"
@@ -131,6 +123,7 @@ def upload_to_web():
             washer_state_array[idx-1] = "nil"
     except Exception as e:
         #print(e)
+        write_log(e)
         pass
 
 
@@ -161,6 +154,8 @@ if l == "a":
     except Exception as e:
         print(e)
         pass
+else:
+    print(passed)
 
 #try:
 #    telegram_bot("turning python script on - a")
