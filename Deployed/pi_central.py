@@ -155,7 +155,7 @@ if l == "a":
         print(e)
         pass
 else:
-    print(passed)
+    pass
 
 #try:
 #    telegram_bot("turning python script on - a")
