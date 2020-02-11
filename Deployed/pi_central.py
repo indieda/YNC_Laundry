@@ -125,6 +125,7 @@ def upload_to_web():
                 l="f"
             elif ((d == "first") or (d == "second") or (d == "third") or (d == "fourth") or (d == "fifth")  or (d == "sixth")  or (d == "seventh")  or (d == "eigth")  or (d == "ninth")  or (d == "tenth")  or (d == "max")):
                 response = requests.post(url,json={"Washer {} ble message: {}".format(idx,d):"Lightval"})
+                telegram_bot(d)
             else:
                 #kill[idx-1] = kill[idx-1] + 1
                 pass
@@ -153,13 +154,10 @@ finally:
     uptime_log.close()
 
 #telegram bot code
-'''
-try:
-    telegram_bot("turning python script on - a")
-except:
-    pass
-'''
-
+#try:
+#    telegram_bot("turning python script on - a")
+#except:
+#    pass
 while (time.time() - time_exit < 585):
     i=0
     try:
@@ -199,12 +197,12 @@ try:
     uptime_log = open(uptime_log_path,"a")
     t = str(datetime.now())
     write = uptime_log.write(t+ " off"+"\n")
-'''
-    try:
-        telegram_bot("turning python script off - b")
-    except:
-        pass
-'''
+
+#    try:
+#        telegram_bot("turning python script off - b")
+#    except:
+#        pass
+
 except:
     pass
 finally:
