@@ -118,7 +118,7 @@ def upload_to_web():
                 print('Washer {}'.format(idx), d ,"and Uploaded")
                 if l == "r":
                     try:
-                        tele = telegram_bot("Washer {} ".format(washer_addr_reversed[idx])+str(d))
+                        tele = telegram_bot("Washer {} ".format(washer_addr_reversed[idx]) +str(d))
                     except:
                         pass
                 else:
@@ -159,7 +159,7 @@ finally:
 z="test on"
 if l == "a":
     try:
-        tele = telegram_bot("Washer {} ".format(washer_addr_reversed[0]) + str(z))
+        tele = telegram_bot("Washer {} ".format(washer_addr_reversed[0])+str(z))
     except Exception as e:
         print(e)
         pass
