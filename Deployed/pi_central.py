@@ -119,14 +119,14 @@ def upload_to_web():
                 #response2 = requests.post(ync_url , json = {'Washer 6':'Error'})
                 write_log("Washer {} Error".format(washer_addr_reversed[idx]))
                 print('Washer {}'.format(idx), d ,"and Uploaded")
-                if l != "f":
+                if l == "r":
                     try:
                         telegram_bot("Washer {} ".format(washer_addr_reversed[idx])+str(d))
                     except:
                         pass
                 else:
                     pass
-                l="f"
+                l="r"
             elif ((d == "first") or (d == "second") or (d == "third") or (d == "fourth") or (d == "fifth")  or (d == "sixth")  or (d == "seventh")  or (d == "eigth")  or (d == "ninth")  or (d == "tenth")  or (d == "max")):
                 response = requests.post(url,json={"Washer {} ble message: {}".format(idx,d):"Lightval"})
                 telegram_bot(d)
