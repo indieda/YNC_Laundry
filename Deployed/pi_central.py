@@ -31,10 +31,14 @@ time_elapsed = time.time() - time_prev
 
 def telegram_bot(msg):
     bot_token="1081925199:AAFSR2A4rcls3eTUrNPwI1JgCHWTBQtUgFo"
-    bot_chatID="63735059"
-    send_msg = 'https://api.telegram.org/bot' + bot_token + '/sendMessage?chat_id=' + bot_chatID + '&parse_mode=Markdown&text=' + msg
-    rs = requests.get(send_msg)
-    return rs.json()
+    bot_chatID=["-397154654","63735059"]
+    for members in bot_chatID:
+        try:
+            send_msg = 'https://api.telegram.org/bot' + bot_token + '/sendMessage?chat_id=' + members + '&parse_mode=Markdown&text=' + msg
+            rs = requests.get(send_msg)
+            print(rs.json())
+        except:
+            pass
 
 def read_ble(ble_no,i):
     try:
