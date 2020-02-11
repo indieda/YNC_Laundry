@@ -158,6 +158,14 @@ finally:
     uptime_log.close()
 
 #telegram bot code
+
+z="test on"
+if l == "a":
+    try:
+        tele = telegram_bot("Washer {} ".format(washer_addr_reversed[idx]) + z)
+    except:
+        pass
+
 #try:
 #    telegram_bot("turning python script on - a")
 #except:
