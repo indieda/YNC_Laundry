@@ -163,7 +163,8 @@ z="test on"
 if l == "a":
     try:
         tele = telegram_bot("Washer {} ".format(washer_addr_reversed[idx]) + z)
-    except:
+    except Exception as e:
+        print(e)
         pass
 
 #try:
