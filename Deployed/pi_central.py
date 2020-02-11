@@ -84,6 +84,7 @@ def upload_to_web():
                         except:
                             pass
                     else:
+                        pass
                     l="n"
                 #response2 = requests.post(ync_url , json = {"Washer 6":"On"})
                 except:
@@ -103,6 +104,7 @@ def upload_to_web():
                         except:
                             pass
                     else:
+                        pass
                     l="f"
                 except:
                     pass
