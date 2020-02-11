@@ -153,10 +153,12 @@ finally:
     uptime_log.close()
 
 #telegram bot code
+'''
 try:
     telegram_bot("turning python script on - a")
 except:
     pass
+'''
 
 while (time.time() - time_exit < 585):
     i=0
@@ -197,10 +199,12 @@ try:
     uptime_log = open(uptime_log_path,"a")
     t = str(datetime.now())
     write = uptime_log.write(t+ " off"+"\n")
+'''
     try:
         telegram_bot("turning python script off - b")
     except:
         pass
+'''
 except:
     pass
 finally:
