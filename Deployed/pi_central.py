@@ -82,7 +82,7 @@ def upload_to_web():
                     response = requests.post(url , json = {"Washer {}".format(washer_addr_reversed[idx]):"On, machine is not available for use"})
                     resp = requests.post(test_url , json = {"sensorValue":188,"college":"Cendana","machineLabel":"Washer_{}".format(washer_addr_reversed[idx])})
                     resp2 = requests.post(ync_url , json = {"sensorValue":188,"college":"Cendana","machineLabel":"Washer_{}".format(washer_addr_reversed[idx])})
-                    if l != "n":
+                    if l == "n":
                         try:
                             telegram_bot("Washer {} ".format(washer_addr_reversed[idx]) + str(d))
                         except:
@@ -102,7 +102,7 @@ def upload_to_web():
                     resp = requests.post(test_url , json = {"sensorValue":888,"college":"Cendana","machineLabel":"Washer_{}".format(washer_addr_reversed[idx])})
                     resp2 = requests.post(ync_url , json = {"sensorValue":888,"college":"Cendana","machineLabel":"Washer_{}".format(washer_addr_reversed[idx])})
                 #response2 = requests.post(ync_url , json = {'Washer 6':'Off'})
-                    if l != "f":
+                    if l == "f":
                         try:
                             telegram_bot("Washer {} ".format(washer_addr_reversed[idx])+str(d))
                         except:
