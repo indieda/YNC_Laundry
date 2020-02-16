@@ -13,7 +13,7 @@ log_path = "/home/pi/YNC_Laundry/Deployed/log.txt"
 #log_path = str(Path.cwd()/"log.txt")
 uptime_log_path = "/home/pi/YNC_Laundry/Deployed/uptime.txt"
 #uptime_log_path = str(Path.cwd()/"uptime.txt")
-test_url = "http://cf203277.ngrok.io/index"
+test_url = "https://5b8f2c23.ngrok.io/index"
 ync_url = "https://laundry.yale-nus.edu.sg/index"
 url = "https://enrixpn98m8gp.x.pipedream.net"
 #"https://webhook.site/d9cae541-78e7-48de-8791-79d8eccf84d7"
@@ -161,7 +161,7 @@ finally:
 #    telegram_bot("turning python script on - a")
 #except:
 #    pass
-while (time.time() - time_exit < 585):
+while (time.time() - time_exit < 575):
     i=0
     try:
         for addr_i in cendana_addr:
