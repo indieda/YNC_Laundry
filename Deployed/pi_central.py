@@ -8,7 +8,12 @@ import time
 import threading
 import requests, os, sys, logging
 from pathlib import Path
+import telegram
+#Create secrets file with bottoken.
+from secrets import bottoken
 
+#Edit this channel to the telegram bot's channel name, retaining the @ at the front.
+channel="@cendana_laundry_bot"
 log_path = "/home/pi/YNC_Laundry/Deployed/log.txt"
 #log_path = str(Path.cwd()/"log.txt")
 uptime_log_path = "/home/pi/YNC_Laundry/Deployed/uptime.txt"
@@ -110,7 +115,9 @@ def upload_to_web():
                 write_log("Washer {} Error".format(washer_addr_reversed[idx]))
                 print('Washer {}'.format(idx), d ,"and Uploaded")
                 if l == "r":
-                    tele = telegram_bot("Washer {} ".format(washer_addr_reversed[idx]) +str(d))
+                    #tele = telegram_bot("Washer {} ".format(washer_addr_reversed[idx]) +str(d))
+                    bot = telegram.Bot(token=bottoken)
+                    status = bot.send_message(chat_id=channel, text = "Washer {} error".format(washer_addr_reversed[idx]), parse_mode=telegram.ParseMode.HTML)
                 else:
                     pass
                 l = "r"
