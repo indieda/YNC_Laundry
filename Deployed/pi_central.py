@@ -8,9 +8,9 @@ import time
 import threading
 import requests, os, sys, logging
 from pathlib import Path
-import telegram
+#import telegram
 #Create secrets file with bottoken.
-from secrets import bottoken
+#from secrets import bottoken
 
 #Edit this channel to the telegram bot's channel name, retaining the @ at the front.
 channel="@cendana_laundry_bot"
@@ -116,8 +116,9 @@ def upload_to_web():
                 print('Washer {}'.format(idx), d ,"and Uploaded")
                 if l == "r":
                     #tele = telegram_bot("Washer {} ".format(washer_addr_reversed[idx]) +str(d))
-                    bot = telegram.Bot(token=bottoken)
-                    status = bot.send_message(chat_id=channel, text = "Washer {} error".format(washer_addr_reversed[idx]), parse_mode=telegram.ParseMode.HTML)
+                    #bot = telegram.Bot(token=bottoken)
+                    #status = bot.send_message(chat_id=channel, text = "Washer {} error".format(washer_addr_reversed[idx]), parse_mode=telegram.ParseMode.HTML)
+                    tele = telegram_bot("Washer {} ".format(washer_addr_reversed[idx]) +str(d))
                 else:
                     pass
                 l = "r"
