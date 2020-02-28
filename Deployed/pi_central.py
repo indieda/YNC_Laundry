@@ -175,7 +175,7 @@ while (time.time() - time_exit < 575):
     try:
         for idxx,addr_i in enumerate(cendana_addr, 0):
             try:
-                func_timeout(0.7,read_ble,args=(addr_i,i))
+                func_timeout(0.9,read_ble,args=(addr_i,i))
                 if ((read_ble.data_decode[1] == "n") or (read_ble.data_decode[1] == "f") or (read_ble.data_decode[1] == "r") or (read_ble.data_decode == "first") or (read_ble.data_decode == "second") or (read_ble.data_decode == "third") or (read_ble.data_decode == "fourth")or (read_ble.data_decode == "fifth") or (read_ble.data_decode == "sixth") or (read_ble.data_decode == "seventh") or (read_ble.data_decode == "eigth") or (read_ble.data_decode == "ninth") or (read_ble.data_decode == "tenth") or (read_ble.data_decode == "max")):
                     washer_state_array[idxx]=read_ble.data_decode
                     print(read_ble.data_decode+str(washer_addr_reversed[idxx]))
