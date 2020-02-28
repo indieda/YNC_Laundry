@@ -16,8 +16,10 @@ Change name: AT+NAMEYNC_Laundry_3-6
 Check MAC Addr (This address will be used on the python script to check for its sensor readings): AT+LADDR
 Check Peripheral (0 is peripheral): AT+ROLE
 
+Light levels for arduino:
+735 for washer 6 and 5, not sure yet for washer 3
 
 Problems:
 1. Cannot send numerical lightVal over BLE to Raspberry Pi using UTF-8
 2. The Bluepy python module runnin gon the Raspberry Pi 4 gets into a bad state quite quickly, so I used crontab to restart the script every 10 minutes.
-3.
+3. Washer 3 gives out error instead of AVAILABLE/UNAVAILABLE often enough.
