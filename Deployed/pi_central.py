@@ -19,6 +19,7 @@ log_path = "/home/pi/YNC_Laundry/Deployed/log.txt"
 uptime_log_path = "/home/pi/YNC_Laundry/Deployed/uptime.txt"
 #uptime_log_path = str(Path.cwd()/"uptime.txt")
 ync_url = "https://laundry.chuayunda.com/index"
+new_url = "https://laundry.yale-nus.edu.sg/index"
 test_url = "https://5b8f2c23.ngrok.io/index"
 url = "https://enrixpn98m8gp.x.pipedream.net"
 #"https://webhook.site/d9cae541-78e7-48de-8791-79d8eccf84d7"
@@ -87,6 +88,7 @@ def upload_to_web():
                 #response = requests.post(url,json={"Washer {} ble message: {}".format(idx,d):"Couldn't read..."})
                 response = requests.post(url , json = {"Washer {}".format(washer_addr_reversed[idx]):"On, machine is not available for use"})
                 resp = requests.post(ync_url , json = {"sensorValue":188,"college":"Cendana","machineLabel":"Washer_{}".format(washer_addr_reversed[idx])})
+                resp = requests.post(new_url , json = {"sensorValue":188,"college":"Cendana","machineLabel":"Washer_{}".format(washer_addr_reversed[idx])})
                 resp2 = requests.post(test_url , json = {"sensorValue":188,"college":"Cendana","machineLabel":"Washer_{}".format(washer_addr_reversed[idx])})
                 if l != "n":
                     tele = telegram_bot("Washer {} ".format(washer_addr_reversed[idx]) + d)
@@ -100,6 +102,7 @@ def upload_to_web():
                 #idx = data_decoded[1]
                 response = requests.post(url, json = {"Washer {}".format(washer_addr_reversed[idx]):"Off, machine is available for use"})
                 resp = requests.post(ync_url , json = {"sensorValue":888,"college":"Cendana","machineLabel":"Washer_{}".format(washer_addr_reversed[idx])})
+                resp = requests.post(new_url , json = {"sensorValue":888,"college":"Cendana","machineLabel":"Washer_{}".format(washer_addr_reversed[idx])})
                 resp2 = requests.post(test_url , json = {"sensorValue":888,"college":"Cendana","machineLabel":"Washer_{}".format(washer_addr_reversed[idx])})
                 #response2 = requests.post(ync_url , json = {'Washer 6':'Off'})
                 if l != "f":
@@ -112,6 +115,7 @@ def upload_to_web():
             elif d[1] == "r" :
                 response = requests.post(url, json = {'Washer 6':'Error, the lock light is blinking!'})
                 resp = requests.post(ync_url , json = {"sensorValue":2000,"college":"Cendana","machineLabel":"Washer_{}".format(washer_addr_reversed[idx])})
+                resp = requests.post(new_url , json = {"sensorValue":2000,"college":"Cendana","machineLabel":"Washer_{}".format(washer_addr_reversed[idx])})
                 response2 = requests.post(test_url , json = {'Washer 6':'Error'})
                 write_log("Washer {} Error".format(washer_addr_reversed[idx]))
                 print('Washer {}'.format(idx), d ,"and Uploaded")
