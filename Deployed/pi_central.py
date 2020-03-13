@@ -91,7 +91,8 @@ def upload_to_web():
                 resp = requests.post(new_url , json = {"sensorValue":188,"college":"Cendana","machineLabel":"Washer_{}".format(washer_addr_reversed[idx])})
                 resp2 = requests.post(test_url , json = {"sensorValue":188,"college":"Cendana","machineLabel":"Washer_{}".format(washer_addr_reversed[idx])})
                 if l != "n":
-                    tele = telegram_bot("Washer {} ".format(washer_addr_reversed[idx]) + d)
+                    #tele = telegram_bot("Washer {} ".format(washer_addr_reversed[idx]) + d)
+                    pass
                 else:
                     pass
                 l = "n"
@@ -106,7 +107,8 @@ def upload_to_web():
                 resp2 = requests.post(test_url , json = {"sensorValue":888,"college":"Cendana","machineLabel":"Washer_{}".format(washer_addr_reversed[idx])})
                 #response2 = requests.post(ync_url , json = {'Washer 6':'Off'})
                 if l != "f":
-                    tele = telegram_bot("Washer {} ".format(washer_addr_reversed[idx]) + d)
+                    #tele = telegram_bot("Washer {} ".format(washer_addr_reversed[idx]) + d)
+                    pass
                 else:
                     pass
                 l = "f"
@@ -119,7 +121,7 @@ def upload_to_web():
                 response2 = requests.post(test_url , json = {'Washer 6':'Error'})
                 write_log("Washer {} Error".format(washer_addr_reversed[idx]))
                 print('Washer {}'.format(idx), d ,"and Uploaded")
-                if l == "r":
+                if l != "r":
                     #tele = telegram_bot("Washer {} ".format(washer_addr_reversed[idx]) +str(d))
                     #bot = telegram.Bot(token=bottoken)
                     #status = bot.send_message(chat_id=channel, text = "Washer {} error".format(washer_addr_reversed[idx]), parse_mode=telegram.ParseMode.HTML)
