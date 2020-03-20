@@ -6,14 +6,14 @@
             "ERROR": "Wednesday, 11:59:59 PM, 01-Jan-2020"
         },
         "Washer_2": {
-            "AVAILABLE": "Friday, 06:34:57 PM, 13-Mar-2020",
-            "UNAVAILABLE": "Friday, 05:48:27 PM, 13-Mar-2020",
-            "ERROR": "Thursday, 08:37:26 AM, 12-Mar-2020"
+            "AVAILABLE": "Friday, 01:37:20 PM, 20-Mar-2020",
+            "UNAVAILABLE": "Friday, 12:12:01 PM, 20-Mar-2020",
+            "ERROR": "Friday, 03:55:15 AM, 20-Mar-2020"
         },
         "Washer_3": {
-            "AVAILABLE": "Friday, 06:32:25 PM, 13-Mar-2020",
-            "UNAVAILABLE": "Friday, 07:11:53 PM, 13-Mar-2020",
-            "ERROR": "Friday, 07:55:35 PM, 13-Mar-2020"
+            "AVAILABLE": "Friday, 06:47:52 PM, 20-Mar-2020",
+            "UNAVAILABLE": "Friday, 08:36:25 PM, 20-Mar-2020",
+            "ERROR": "Sunday, 06:08:25 PM, 15-Mar-2020"
         },
         "Washer_4": {
             "AVAILABLE": "Friday, 03:33:34 PM, 28-Feb-2020",
@@ -21,14 +21,14 @@
             "ERROR": "Friday, 12:55:56 AM, 28-Feb-2020"
         },
         "Washer_5": {
-            "AVAILABLE": "Friday, 06:38:41 PM, 13-Mar-2020",
-            "UNAVAILABLE": "Friday, 05:59:10 PM, 13-Mar-2020",
-            "ERROR": "Friday, 04:09:04 PM, 13-Mar-2020"
+            "AVAILABLE": "Friday, 08:22:47 PM, 20-Mar-2020",
+            "UNAVAILABLE": "Friday, 08:18:54 PM, 20-Mar-2020",
+            "ERROR": "Friday, 07:22:11 PM, 20-Mar-2020"
         },
         "Washer_6": {
-            "AVAILABLE": "Friday, 06:37:33 PM, 13-Mar-2020",
-            "UNAVAILABLE": "Friday, 05:58:42 PM, 13-Mar-2020",
-            "ERROR": "Monday, 06:34:57 PM, 24-Feb-2020"
+            "AVAILABLE": "Friday, 08:23:51 PM, 20-Mar-2020",
+            "UNAVAILABLE": "Friday, 08:39:29 PM, 20-Mar-2020",
+            "ERROR": "Friday, 06:40:30 PM, 20-Mar-2020"
         }
     },
     "Elm": {
