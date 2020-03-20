@@ -1,0 +1,632 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, monospace;
+}
+/* The grid: Three equal columns that floats next to each other */
+.column {
+  float: left;
+  width: 33.33%;
+  padding: 50px;
+  text-align: center;
+  font-size: 30px;
+  cursor: pointer;
+  color: white;
+  font-family: monospace;
+  box-shadow: 0 4px 5px 0 rgba(0, 0, 0, 0.2);
+}
+
+/*.column {*/
+    /*float: left;*/
+    /*width: 100%;*/
+    /*padding: 50px;*/
+    /*text-align: center;*/
+    /*font-size: 40px;*/
+    /*cursor: pointer;*/
+    /*color: white;*/
+    /*font-family: monospace;*/
+/*}*/
+
+/*.containerTab {*/
+  /*padding: 20px;*/
+  /*color: white;*/
+/*}*/
+
+.containerTab {
+  padding: 20px;
+  color: white;
+  /*width: 101.5%;*/
+}
+
+@media only screen and (max-device-width: 600px) {
+  .containerTab {
+  padding: 20px;
+  color: white;
+  width: 101.5%;
+}
+}
+
+@media only screen and (max-device-width: 1024px) {
+  .containerTab {
+  padding: 20px;
+  color: white;
+  width: 101.5%;
+}
+}
+
+/*CHANGE THE TAB WIDTH TO width: 101.5%;*/
+
+.row{
+     margin-top: 45px;
+    font-family: monospace;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Closable button inside the container tab */
+.closebtn {
+  float: right;
+  color: white;
+  font-size: 35px;
+
+  cursor: pointer;
+}
+
+/* Float four columns side by side */
+.card_column {
+  float: left;
+  width: 33.33%;
+  padding: 0 10px;
+  margin-bottom: 30px;
+}
+
+/* Remove extra left and right margins, due to padding */
+.card_row {margin: 0 -5px;}
+
+/* Clear floats after the columns */
+.card_row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Responsive columns */
+@media screen and (max-device-width: 500px) {
+  .card_column {
+    width: 100%;
+    display: block;
+    margin-bottom: 30px;
+  }
+}
+
+/*.card_column {*/
+    /*float: left;*/
+    /*width: 25%;*/
+    /*padding: 0 10px;*/
+    /*margin-bottom: 30px;*/
+/*}*/
+/*# add margin bottom pixels to be 30 for card column for mobiles */
+/* Style the counter cards */
+
+.card {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    padding: 16px;
+    text-align: center;
+    background-color: #24495d;
+    margin-top: 20px;
+}
+
+.card-elm-washer1{
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    padding: 16px;
+    text-align: center;
+    background-color: #24495d;
+    margin-top: 20px;
+}
+
+.card-elm-washer2{
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    padding: 16px;
+    text-align: center;
+    background-color: #24495d;
+    margin-top: 20px;
+}
+
+.card-elm-washer3{
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    padding: 16px;
+    text-align: center;
+    background-color: #24495d;
+    margin-top: 20px;
+}
+
+.card-elm-washer4{
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    padding: 16px;
+    text-align: center;
+    background-color: #24495d;
+    margin-top: 20px;
+}
+
+.card-elm-washer5{
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    padding: 16px;
+    text-align: center;
+    background-color: #24495d;
+    margin-top: 20px;
+}
+
+.card-elm-washer6{
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    padding: 16px;
+    text-align: center;
+    background-color: #24495d;
+    margin-top: 20px;
+}
+
+
+.card-cendana-washer1{
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    padding: 16px;
+    text-align: center;
+    background-color: #24495d;
+    margin-top: 20px;
+}
+
+.card-cendana-washer2{
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    padding: 16px;
+    text-align: center;
+    background-color: #24495d;
+    margin-top: 20px;
+}
+
+.card-cendana-washer3{
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    padding: 16px;
+    text-align: center;
+    background-color: #24495d;
+    margin-top: 20px;
+}
+
+.card-cendana-washer4{
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    padding: 16px;
+    text-align: center;
+    background-color: #24495d;
+    margin-top: 20px;
+}
+
+.card-cendana-washer5{
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    padding: 16px;
+    text-align: center;
+    background-color: #24495d;
+    margin-top: 20px;
+}
+
+.card-cendana-washer6{
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    padding: 16px;
+    text-align: center;
+    background-color: #24495d;
+    margin-top: 20px;
+}
+
+.bg-primary {
+    color: #fff;
+    background-color: #044882;
+}
+
+/*Add about 102% width for anything that is below certain width */
+.navbar {
+    position: relative;
+    min-height: 65px;
+    margin-bottom: 20px;
+    border: 1px solid transparent;
+    width: 102%;
+}
+
+.navbar-brand {
+    list-style-type: none;
+    display:inline-block;
+    float: left;
+    height: 50px;
+    /*padding: 20px 15px;*/
+    padding-top: 10px;
+    padding-right: 15px;
+    padding-bottom: 20px;
+    padding-left: 15px;
+    font-size: 18px;
+    line-height: 20px;
+}
+
+
+.bottom_navbar {
+  overflow: hidden;
+  background-color: #343a40;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: 65px;
+}
+
+.bottom_navbar a {
+  /*float: centre;*/
+  display: block;
+  color: #f2f2f2;
+  text-align: right;
+  margin-right: 15px;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 23px;
+  border-bottom: 3px solid transparent;
+}
+
+.bottom_navbar a:hover {
+  border-bottom: 3px solid white;
+}
+
+h1 { 
+    margin-left: 10px;
+    margin-top: 0px;
+    float: left;
+    display: inline-block;
+}
+
+
+
+ /**/
+  /*Change mobile width to 800px*/
+  /*<span class="navbar-brand font-weight-normal welcome-msg mx-auto" style="font-family:monospace;font-size: 45px;width: 752px;">*/<!--652px width originally-->
+       /*Yale-NUS Laundry Viewer*/
+   /*</span>*/
+
+</style>
+        <!--<h1>Hey there, </h1>-->
+        <!--<br>-->
+        <!--<h2>Cendana College Laundry Machine:</h2>-->
+        <!--<p>Washer 1. Status: {{ content }} </p>-->
+
+<!--The content below is only a placeholder and can be replaced.-->
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+<META HTTP-EQUIV="PRAGMA" CONTENT="NO-CACHE">
+
+<nav class="navbar navbar-expand navbar-dark bg-primary">
+  <!--Yale-NUS Laundry Viewer-->
+  <!--<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">-->
+    <!--<span class="navbar-toggler-icon"></span>-->
+  <!--</button>-->
+  <!--<img><img align="left" img src="https://www.yale-nus.edu.sg/wp-content/uploads/2017/02/Mascot-story.jpg" height="65" width="151"></img>-->
+  <!--original image 1024 by 441-->
+   <span class="navbar-brand font-weight-normal welcome-msg mx-auto" style="font-family:monospace;font-size: 30px;width: auto;"><!--334px width original-->
+         <h1>Yale-NUS College Laundry Status Checker</h1>
+   </span>
+</nav>
+<!-- <div class="vertical-center"> -->
+<div class="container font-weight-normal my-3 custom-font" style="text-align: center;">
+		<router-outlet></router-outlet>
+</div>
+<!-- </div> -->
+<!--<ng-template #loading><div style="text-align: center; margin-top: 100px; padding: 10px;" class="container">Loading Data...</div></ng-template>-->
+<div style="text-align:center">
+  <h2 style="font-family: monospace;">Click below to check for available laundry machines</h2>
+  <p>  </p>
+</div>
+
+<!-- Three columns -->
+
+<div class="row">
+  <div id='rcn' class="column" onclick="openTab('b1');" style="background:#3286af;">
+    Saga
+  </div>
+  <div id='rcn1' class="column" onclick="openTab('b2');" style="background:#2c617b;">
+    Elm
+  </div>
+  <div id='rcn2' class="column" onclick="openTab('b3');" style="background:#244759;">
+    Cendana
+  </div>
+</div>
+
+<!-- Full-width columns: (hidden by default) -->
+<div id="b1" class="containerTab" style="display:none;background:#3286af">
+  <span onclick="this.parentElement.style.display='none'" class="closebtn">&times;</span>
+  <h2>Saga</h2>
+  <p>Coming soon....</p>
+</div>
+
+<div id="b2" class="containerTab" style="display:none;background:#2e617c"> <!--//2c617b-->
+  <span onclick="this.parentElement.style.display='none'" class="closebtn">&times;</span>
+  <h2>Elm</h2>
+<div class="card_row">
+  <div class="card_column">
+    <div class="card-elm-washer1">
+      <h3>Washer 1</h3>
+      <p style="margin: 0 0 10px;
+    margin-top: 20px;
+    font-family: monospace;
+    color: #a7a78d;
+    font-size: larger;"><span id="elm_washer1">Coming Soon...</span></p>
+    </div>
+  </div>
+
+  <div class="card_column">
+    <div class="card-elm-washer2">
+      <h3>Washer 2</h3>
+      <p style="margin: 0 0 10px;
+    margin-top: 20px;
+    font-family: monospace;
+    color: #a7a78d;
+    font-size: larger;"><span id="elm_washer2">Coming Soon...</span></p>
+    </div>
+  </div>
+
+  <div class="card_column">
+    <div class="card-elm-washer3">
+      <h3>Washer 3</h3>
+      <p style="margin: 0 0 10px;
+    margin-top: 20px;
+    font-family: monospace;
+    color: #a7a78d;
+    font-size: larger;"><span id="elm_washer3">Coming Soon...</span></p>
+    </div>
+  </div>
+
+     <div class="card_column">
+    <div class="card-elm-washer4">
+      <h3>Washer 4</h3>
+      <p style="margin: 0 0 10px;
+    margin-top: 20px;
+    font-family: monospace;
+    color: #a7a78d;
+    font-size: larger;"><span id="elm_washer4">Coming Soon...</span></p>
+    </div>
+  </div>
+
+  <div class="card_column">
+    <div class="card-elm-washer5">
+      <h3>Washer 5</h3>
+      <p style="margin: 0 0 10px;
+    margin-top: 20px;
+    font-family: monospace;
+    color: #a7a78d;
+    font-size: larger;"><span id="elm_washer5">Coming Soon...</span></p>
+    </div>
+  </div>
+
+   <div class="card_column">
+    <div class="card-elm-washer6">
+      <h3>Washer 6</h3>
+      <p style="margin: 0 0 10px;
+    margin-top: 20px;
+    font-family: monospace;
+    color: #a7a78d;
+    font-size: larger;"><span id="elm_washer6">Coming Soon...</span></p>
+    </div>  </div>
+</div>
+
+</div>
+
+<div id="b3" class="containerTab" style="display:none;background:#224758"> <!--#376880-->
+  <span onclick="this.parentElement.style.display='none'" class="closebtn">&times;</span>
+  <h2>Cendana</h2>
+
+<div class="card_row">
+  <div class="card_column">
+    <div class="card-cendana-washer1">
+      <h3>Washer 1</h3>
+      <p style="margin: 0 0 10px;
+    margin-top: 20px;
+    font-family: monospace;
+    color: #a7a78d;
+    font-size: larger;"><span id="cendana_washer1">Coming Soon...</span></p>
+    </div>
+  </div>
+
+  <div class="card_column">
+    <div class="card-cendana-washer2">
+      <h3>Washer 2</h3>
+      <p style="margin: 0 0 10px;
+    margin-top: 20px;
+    font-family: monospace;
+    color: #a7a78d;
+    font-size: larger;"><span id="cendana_washer2">Loading...</span></p>
+    </div>
+  </div>
+
+  <div class="card_column">
+    <div class="card-cendana-washer3">
+      <h3>Washer 3</h3>
+      <p style="margin: 0 0 10px;
+    margin-top: 20px;
+    font-family: monospace;
+    color: #a7a78d;
+    font-size: larger;"><span id="cendana_washer3">Loading...</span></p>
+    </div>
+  </div>
+
+     <div class="card_column">
+    <div class="card-cendana-washer4">
+      <h3>Washer 4</h3>
+      <p style="margin: 0 0 10px;
+    margin-top: 20px;
+    font-family: monospace;
+    color: #a7a78d;
+    font-size: larger;"><span id="cendana_washer4">Coming Soon...</span></p>
+    </div>
+  </div>
+
+  <div class="card_column">
+    <div class="card-cendana-washer5">
+      <h3>Washer 5</h3>
+      <p style="margin: 0 0 10px;
+    margin-top: 20px;
+    font-family: monospace;
+    color: #a7a78d;
+    font-size: larger;"><span id="cendana_washer5">Loading...</span></p>
+    </div>
+  </div>
+
+   <div class="card_column">
+    <div class="card-cendana-washer6">
+      <h3>Washer 6</h3>
+      <p style="margin: 0 0 10px;
+    margin-top: 20px;
+    font-family: monospace;
+    color: #a7a78d;
+    font-size: larger;"><span id="cendana_washer6">Loading...</span></p>
+    <!--This used to be what was ontop: font-size: larger;"><span id="cendana_washer6">{{cendana_washer3}}</span></p>-->
+    </div>  </div>
+
+</div>
+
+</div>
+
+<script>
+function openTab(tabName) {
+  var i, x;
+  x = document.getElementsByClassName("containerTab");
+  for (i = 0; i < x.length; i++) {
+    x[i].style.display = "none";
+  }
+  document.getElementById(tabName).style.display = "block";
+}
+</script>
+
+<script type="text/javascript">
+function change_color(char1) {
+  if (document.getElementById(char1).textContent.charAt(0) == "U" ||document.getElementById(char1).textContent.charAt(0) == "E" ) {return 1}
+  else if (document.getElementById(char1).textContent.charAt(0) == "A") {return 2}
+  else {return 3};   // This function checks for the starting letter of the washer state and reports back accordingly 1 (UNAVAILABLE),2(AVAILABLE), or 3 (Error).
+};
+
+var timer_id = 1500; //milisecond
+
+window.setInterval(function(){
+      $("#elm_washer1").load("/elm_washer1_status");
+   if (change_color("elm_washer1") == 1) {
+    document.getElementsByClassName("card-elm-washer1")[0].style.backgroundColor = "#8c1421";
+} else if (change_color("elm_washer1") == 2) {
+    document.getElementsByClassName("card-elm-washer1")[0].style.backgroundColor = "#098009";
+};
+}, timer_id) // make requests every minute
+   window.setInterval(function(){
+      $("#elm_washer2").load("/elm_washer2_status");
+      if (change_color("elm_washer2") == 1) {
+    document.getElementsByClassName("card-elm-washer2")[0].style.backgroundColor = "#8c1421";
+} else if (change_color("elm_washer2") == 2) {
+    document.getElementsByClassName("card-elm-washer2")[0].style.backgroundColor = "#098009";
+};
+   }, timer_id) // make requests every minute
+   
+   window.setInterval(function(){
+      $("#elm_washer3").load("/elm_washer3_status");
+      if (change_color("elm_washer3") == 1) {
+    document.getElementsByClassName("card-elm-washer3")[0].style.backgroundColor = "#8c1421";
+} else if (change_color("elm_washer3") == 2) {
+    document.getElementsByClassName("card-elm-washer3")[0].style.backgroundColor = "#098009";
+};
+   }, timer_id) // make requests every minute
+
+   window.setInterval(function(){
+      $("#elm_washer4").load("/elm_washer4_status");
+      if (change_color("elm_washer4") == 1) {
+    document.getElementsByClassName("card-elm-washer4")[0].style.backgroundColor = "#8c1421";
+} else if (change_color("elm_washer4") == 2) {
+    document.getElementsByClassName("card-elm-washer4")[0].style.backgroundColor = "#098009";
+};
+   }, timer_id) // make requests every minute
+   window.setInterval(function(){
+      $("#elm_washer5").load("/elm_washer5_status");
+      if (change_color("elm_washer5") == 1) {
+    document.getElementsByClassName("card-elm-washer5")[0].style.backgroundColor = "#8c1421";
+} else if (change_color("elm_washer5") == 2) {
+    document.getElementsByClassName("card-elm-washer5")[0].style.backgroundColor = "#098009";
+};
+   }, timer_id) // make requests every minute
+   window.setInterval(function(){
+      $("#elm_washer6").load("/elm_washer6_status");
+      if (change_color("elm_washer6") == 1) {
+    document.getElementsByClassName("card-elm-washer6")[0].style.backgroundColor = "#8c1421";
+} else if (change_color("elm_washer6") == 2) {
+    document.getElementsByClassName("card-elm-washer6")[0].style.backgroundColor = "#098009";
+};
+   }, timer_id) // make requests every minute
+   window.setInterval(function(){
+      $("#cendana_washer1").load("/cendana_washer1_status");
+      if (change_color("cendana_washer1") == 1) {
+    document.getElementsByClassName("card-cendana-washer1")[0].style.backgroundColor = "#8c1421";
+} else if (change_color("cendana_washer1") == 2) {
+    document.getElementsByClassName("card-cendana-washer1")[0].style.backgroundColor = "#098009";
+};
+   }, timer_id) // make requests every minute
+   window.setInterval(function(){
+      $("#cendana_washer2").load("/cendana_washer2_status");
+      if (change_color("cendana_washer2") == 1) {
+    document.getElementsByClassName("card-cendana-washer2")[0].style.backgroundColor = "#8c1421";
+} else if (change_color("cendana_washer2") == 2) {
+    document.getElementsByClassName("card-cendana-washer2")[0].style.backgroundColor = "#098009";
+};
+   }, timer_id) // make requests every minute
+   window.setInterval(function(){
+      $("#cendana_washer3").load("/cendana_washer3_status");
+      if (change_color("cendana_washer3") == 1) {
+    document.getElementsByClassName("card-cendana-washer3")[0].style.backgroundColor = "#8c1421";
+} else if (change_color("cendana_washer3") == 2) {
+    document.getElementsByClassName("card-cendana-washer3")[0].style.backgroundColor = "#098009";
+};
+   }, timer_id) // make requests every minute
+   window.setInterval(function(){
+      $("#cendana_washer4").load("/cendana_washer4_status");
+      if (change_color("cendana_washer4") == 1) {
+    document.getElementsByClassName("card-cendana-washer4")[0].style.backgroundColor = "#8c1421";
+} else if (change_color("cendana_washer4") == 2) {
+    document.getElementsByClassName("card-cendana-washer4")[0].style.backgroundColor = "#098009";
+};
+   }, timer_id) // make requests every minute
+   window.setInterval(function(){
+      $("#cendana_washer5").load("/cendana_washer5_status");
+      if (change_color("cendana_washer5") == 1) {
+    document.getElementsByClassName("card-cendana-washer5")[0].style.backgroundColor = "#8c1421";
+} else if (change_color("cendana_washer5") == 2) {
+    document.getElementsByClassName("card-cendana-washer5")[0].style.backgroundColor = "#098009";
+};
+   }, timer_id) // make requests every minute
+   window.setInterval(function(){
+      $("#cendana_washer6").load("/cendana_washer6_status");
+      if (change_color("cendana_washer6") == 1) {
+    document.getElementsByClassName("card-cendana-washer6")[0].style.backgroundColor = "#8c1421";
+} else if (change_color("cendana_washer6") == 2) {
+    document.getElementsByClassName("card-cendana-washer6")[0].style.backgroundColor = "#098009";
+};
+   }, timer_id) // make requests every minute
+</script>
+
+<!--Feedback form: https://goo.gl/forms/6bKjSPHquMfg7kvB2, with a sign that says "Any feedback?"-->
+<!--<nav class="navbar navbar-expand fixed-bottom navbar-dark bg-dark">-->
+	<!--<div class="mx-auto">-->
+		     <!--<app-login></app-login>-->
+	<!--</div>-->
+<!--</nav>-->
+<div class="bottom_navbar">
+
+ <a target="_blank" rel="noopener noreferrer" href="https://forms.gle/JgnjDjYSR9CcnLq3A" style="font-family: monospace">Report issues or share feedback with us here!</a>
+<p> 
+</div>
+
+
+{% endblock %}

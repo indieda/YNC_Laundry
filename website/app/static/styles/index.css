@@ -1,0 +1,133 @@
+.title {
+	float: left;
+	font-size: x-large;
+	text-align: left;
+}
+
+.navbar-brand{
+  /*margin-left: 9rem;*/
+    padding: 20px 15px;
+}
+
+.welcome-msg {
+    flex: auto;
+    float: right;
+    text-align: end;
+    margin-right: 20px;
+    width: 295px;
+    font-family: monospace;
+}
+
+@media only screen and (max-width: 450px) {
+ .welcome-msg {
+    flex: auto;
+    float: right;
+    text-align: end;
+    margin-right: 20px;
+    width: 295px;
+    font-family: monospace;
+}
+}
+
+
+.dropdown {
+  float: right;
+  max-width: 45px;
+  max-height: 40px;
+  /*overflow: hidden;*/
+  /*margin-right: 6rem;*/
+}
+
+.dropdown .dropbtn:before {
+  font-size: 16px;
+  border: none;
+  outline: none;
+  color: white;/*#132161;*/
+  /*padding: 14px 16px;*/
+  background-color: inherit;
+  /*font-family: inherit;*/
+  cursor: pointer;
+  /*content: "\f0d7";*/
+  font-family: FontAwesome;
+    /*width: 4px;*/
+    /*margin-right: 70px;*/
+    /*margin-left: 5px;*/
+    /*height: 3px;*/
+    /*padding-left: 2px;*/
+    /*padding-right: 2px;*/
+}
+
+.dropdown .dropbtn {
+  font-size: 16px;
+  border: none;
+  outline: none;
+  color: #132161;
+  /*padding: 14px 16px;*/
+  background-color: inherit;
+  /*font-family: inherit;*/
+  cursor: pointer;
+  /*margin-right: 50px;*/
+  /*margin-left: 16px;*/
+    /*width: 4px;*/
+    /*margin-right: 70px;*/
+    /*margin-left: 5px;*/
+    /*height: 3px;*/
+    /*padding-left: 2px;*/
+    /*padding-right: 2px;*/
+}
+
+
+
+.dropdown-content {
+  top: 48px;
+  display: none;
+  position: absolute;
+  left: -5em;
+  background-color: #f9f9f9;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+  font-size: 0.8rem;
+  width: 120px;
+}
+
+.dropdown-content a {
+  float: none;
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+  top: 41px;
+}
+
+
+.dropdown-content a:hover {
+  background-color: #ddd;
+}
+
+/*.dropdown:hover .dropdown-content {*/
+/*.dropdown-content {*/
+  /*display: block;*/
+/*}*/
+
+
+.show {display: block;}
+
+.noshow {display: none;}
+
+.vertical-center {
+  min-height: 100%;  /* Fallback for browsers do NOT support vh unit */
+  min-height: 100vh; /* These two lines are counted as one :-)       */
+
+  display: flex;
+  align-items: center;
+}
+
+.custom-font{
+	font-size: 0.9rem !important;
+}
+
+.common-icon{
+	font-size: 1.7rem;
+	color: #fff;
+}
