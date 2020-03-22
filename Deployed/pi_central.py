@@ -125,7 +125,8 @@ def upload_to_web():
                     #tele = telegram_bot("Washer {} ".format(washer_addr_reversed[idx]) +str(d))
                     #bot = telegram.Bot(token=bottoken)
                     #status = bot.send_message(chat_id=channel, text = "Washer {} error".format(washer_addr_reversed[idx]), parse_mode=telegram.ParseMode.HTML)
-                    tele = telegram_bot("Washer {} ".format(washer_addr_reversed[idx]) +str(d))
+                    #tele = telegram_bot("Washer {} ".format(washer_addr_reversed[idx]) +str(d))
+                    pass
                 else:
                     pass
                 l = "r"
