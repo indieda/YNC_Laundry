@@ -13,7 +13,7 @@ SCOPES = ['https://www.googleapis.com/auth/spreadsheets']
 # The ID and range of a sample spreadsheet.
 SPREADSHEET_ID = '1HHw4EQUwgcE-n5SEb7VRSkdObEtFvK3CUlYZlvj9Oy8'
 SAMPLE_RANGE_NAME = 'Cendana!C1:D3'
-SERVICE_ACCOUNT_FILE = '/Users/IndieDa/Documents/GitHub/YNCLaundryViewer-/app/cred.json'
+SERVICE_ACCOUNT_FILE = '/Users/IndieDa/Documents/GitHub/YNC_Laundry/website/app/credss.json'
 credentials = service_account.Credentials.from_service_account_file(SERVICE_ACCOUNT_FILE, scopes=SCOPES)
 def main():
     """Shows basic usage of the Sheets API.
