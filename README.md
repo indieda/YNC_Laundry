@@ -16,6 +16,7 @@ If you're interested in frontend
 2. For the HTML code to get the status data from the flask web app: edit the HTML's javascript, and ```/website/app/routes.py```. The flask app's home folder is in ```~/website/app```
 
 ## Backend
+<https://github.com/indieda/YNC_Laundry/blob/master/README.md#headers#<backend>
 If you're interested in how data gets sent from the laundry room to the web server: 
 1. The raspberry pi code can be accessed at: ```~/Deployed/pi_central.py```
 2. Arduino code is found at: ```~/Deployed/10_Feb_2020.ino```
