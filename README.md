@@ -4,7 +4,7 @@
 
 Hello! Welcome to the Yale-NUS College Laundry Codebase. This readme should be read alongside the writeup over at: https://chuayunda.com/2020/02/25/yale-nus-smart-laundry/
 ##### Table of Contents  
-[Headers](#SOFTWARE)  
+[**SOFTWARE**](#headers)  
 
 
 If you're interested in frontend
@@ -21,7 +21,7 @@ If you're interested in the backend:
 
 
 
-**HARDWARE**
+[**HARDWARE**](#headers)  
 Arduino pro mini 8MHz
 https://www.aliexpress.com/item/32672852945.html?spm=a2g0s.9042311.0.0.5a504c4dVc4d6i
 AT-09 BLE module
