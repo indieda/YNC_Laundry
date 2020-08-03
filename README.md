@@ -26,7 +26,7 @@ If you're interested in how data gets sent from the laundry room to the web serv
 2. Arduino code is found at: ```~/Deployed/10_Feb_2020.ino```
 
 ## Flask Python web app (Which interfaces with Gunicorn and NGINX for load balancer)
-<https://github.com/indieda/YNC_Laundry/blob/master/README.md#flask_app>
+https://github.com/indieda/YNC_Laundry/blob/master/README.md#flask-python-web-app-which-interfaces-with-gunicorn-and-nginx-for-load-balancer
 
 1. We used to use SQLalchemy but I found it too clunky with flask. We're now using a json to store the status data, and send them around the app. ```~/website/app/status_db.json```
 2. With regard to the weekly forecasting features, the script doing that can be accessed at: ```~/website/app/upload_gsheets.py```. I intend to run it with a cron job and just read from the ```~/website/app/status_db.json``` file and update a gsheet automatically to keep a proper log of all the events that happened, where it can be exported to R or some other program for further processing.
