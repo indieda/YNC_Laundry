@@ -5,7 +5,7 @@
 Hello! Welcome to the Yale-NUS College Laundry Codebase.
 
 ##### Table of Contents  
-[Project Overview](#project-overview) 
+[**Project Overview**](#project-overview)  
 [**SOFTWARE**](#software)  
 [Frontend](#frontend)  
 [Backend](#backend)  
