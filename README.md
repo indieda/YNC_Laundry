@@ -2,6 +2,19 @@
 
 **Deployed and Website code are both live on the systems at Cendana.**
 
+Hello! Welcome to the Yale-NUS College Laundry Codebase.
+
+This readme should be read alongside the writeup over at: https://chuayunda.com/2020/02/25/yale-nus-smart-laundry/
+
+If you're interested in frontend
+1. For what's being displayed on the webpage using the HTML: You'll want to head over to ```~/website/app/templates``` In there, you'll find the 3 html files which will be loaded when you head over to the webpage at laundry.chuayunda.com
+2. For the HTML code to get the status data from the flask web app: edit the HTML's javascript, and ```/website/app/routes.py```. The flask app's home folder is in ```~/website/app```
+
+If you're interested in how data gets sent from the laundry room to the web server: 
+1. The raspberry pi code can be accessed at: ```~/Deployed/pi_central.py```
+2. Arduino code is found at: ```~/Deployed/10_Feb_2020.ino```
+
+
 HARDWARE:
 Arduino pro mini 8MHz
 https://www.aliexpress.com/item/32672852945.html?spm=a2g0s.9042311.0.0.5a504c4dVc4d6i
