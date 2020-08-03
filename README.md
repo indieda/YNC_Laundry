@@ -1,6 +1,6 @@
 # YNC_Laundry
 
-
+![YNC Laundry Project Overview](https://chuayunda.com/wp-content/uploads/2020/03/IMG_0394.jpg)
 
 Hello! Welcome to the Yale-NUS College Laundry Codebase.
 
