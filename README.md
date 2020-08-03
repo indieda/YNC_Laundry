@@ -1,6 +1,6 @@
 # YNC_Laundry
 
-**Deployed and Website code are both live on the deployed systems at Cendana.**
+**Deployed and Website code are both live on the systems at Cendana.**
 
 HARDWARE:
 Arduino pro mini 8MHz
