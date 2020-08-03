@@ -4,7 +4,7 @@
 
 Hello! Welcome to the Yale-NUS College Laundry Codebase. This readme should be read alongside the writeup over at: https://chuayunda.com/2020/02/25/yale-nus-smart-laundry/
 ##### Table of Contents  
-[Headers](#**SOFTWARE**)  
+[Headers](#SOFTWARE)  
 
 
 If you're interested in frontend
