@@ -1,5 +1,7 @@
 # YNC_Laundry
 
+**Stable and Website code are both live on the deployed systems at Cendana.
+
 HARDWARE:
 Arduino pro mini 8MHz
 https://www.aliexpress.com/item/32672852945.html?spm=a2g0s.9042311.0.0.5a504c4dVc4d6i
