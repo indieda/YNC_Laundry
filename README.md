@@ -4,29 +4,33 @@
 
 Hello! Welcome to the Yale-NUS College Laundry Codebase. This readme should be read alongside the writeup over at: https://chuayunda.com/2020/02/25/yale-nus-smart-laundry/
 ##### Table of Contents  
-[**SOFTWARE**](#headers)  
-[Frontend](#headers)  
-[Backend](#headers)  
-[**HARDWARE**](#headers)  
+[**SOFTWARE**](#software)  
+[Frontend](#frontend)  
+[Backend](#backend)  
+[Flask App](#flask)  
+[**HARDWARE**](#hardware)  
 
 ## Software
+<https://github.com/indieda/YNC_Laundry/blob/master/README.md#software>
 ## Frontend
+<https://github.com/indieda/YNC_Laundry/blob/master/README.md#frontend>
 If you're interested in frontend
 1. For what's being displayed on the webpage using the HTML: You'll want to head over to ```~/website/app/templates``` In there, you'll find the 3 html files which will be loaded when you head over to the webpage at laundry.chuayunda.com
 2. For the HTML code to get the status data from the flask web app: edit the HTML's javascript, and ```/website/app/routes.py```. The flask app's home folder is in ```~/website/app```
 
 ## Backend
-<https://github.com/indieda/YNC_Laundry/blob/master/README.md#headers#<backend>
+<https://github.com/indieda/YNC_Laundry/blob/master/README.md#backend>
 If you're interested in how data gets sent from the laundry room to the web server: 
 1. The raspberry pi code can be accessed at: ```~/Deployed/pi_central.py```
 2. Arduino code is found at: ```~/Deployed/10_Feb_2020.ino```
 
+<https://github.com/indieda/YNC_Laundry/blob/master/README.md#flask>
 ## Flask Python web app (Which interfaces with Gunicorn and NGINX for load balancer)
 1. We used to use SQLalchemy but I found it too clunky with flask. We're now using a json to store the status data, and send them around the app. ```~/website/app/status_db.json```
 2. With regard to the weekly forecasting features, the script doing that can be accessed at: ```~/website/app/upload_gsheets.py```. I intend to run it with a cron job and just read from the ```~/website/app/status_db.json``` file and update a gsheet automatically to keep a proper log of all the events that happened, where it can be exported to R or some other program for further processing.
 
 
-
+<https://github.com/indieda/YNC_Laundry/blob/master/README.md#hardware>
 ## Hardware
 Arduino pro mini 8MHz
 https://www.aliexpress.com/item/32672852945.html?spm=a2g0s.9042311.0.0.5a504c4dVc4d6i
