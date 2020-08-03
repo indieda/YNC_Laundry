@@ -7,7 +7,7 @@ Hello! Welcome to the Yale-NUS College Laundry Codebase. This readme should be r
 [**SOFTWARE**](#software)  
 [Frontend](#frontend)  
 [Backend](#backend)  
-[Flask_App](#flask_app)  
+[Flask_App](#flask-python-web-app-which-interfaces-with-gunicorn-and-nginx-for-load-balancer)  
 [**HARDWARE**](#hardware)  
 
 ## Software
