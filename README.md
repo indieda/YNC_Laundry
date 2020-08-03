@@ -1,8 +1,5 @@
 # YNC_Laundry
 
-![YNC Laundry Project Overview](https://chuayunda.com/wp-content/uploads/2020/03/IMG_0394.jpg)
-
-Hello! Welcome to the Yale-NUS College Laundry Codebase.
 
 ##### Table of Contents  
 [**Project Overview**](#project-overview)  
@@ -12,8 +9,12 @@ Hello! Welcome to the Yale-NUS College Laundry Codebase.
 [Flask_App](#flask-python-web-app-which-interfaces-with-gunicorn-and-nginx-for-load-balancer)  
 [**HARDWARE**](#hardware)  
 
+![YNC Laundry Project Overview](https://chuayunda.com/wp-content/uploads/2020/03/IMG_0394.jpg)
+
+
 ## Project Overview
 
+Hello! Welcome to the Yale-NUS College Laundry Codebase.
 This readme should be read alongside the writeup over at: https://chuayunda.com/2020/02/25/yale-nus-smart-laundry/
 
 **The folders: ```Deployed``` and ```Website``` are both live on the systems at Cendana.**
