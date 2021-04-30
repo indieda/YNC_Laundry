@@ -103,7 +103,7 @@ qtconsole==4.3.1
 redis==3.0.1
 requests==2.21.0
 requests-oauthlib==1.0.0
-rsa==4.0
+rsa==4.7
 ruamel.yaml==0.15.88
 scandir==1.6
 scikit-image==0.14.2
